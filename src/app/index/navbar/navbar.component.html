@@ -1,0 +1,167 @@
+<header class="navbar navbar-expand-md navbar-dark d-print-none sticky-top">
+  <div class="container-xl">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+      <a routerLink="/"> {{ appName }} </a>
+    </h1>
+
+    <div class="navbar-nav flex-row order-md-last" *ngIf="!logged">
+      <div class="nav-item">
+        <div class="btn-list">
+            <button class="btn btn-primary" (click)="open(loginModalID)">Connexion</button>
+            <button class="btn btn-light" (click)="open(registerModalID)" >Inscription</button>
+          </div>
+      </div>
+    </div>
+
+    <div class="navbar-nav flex-row order-md-last" *ngIf="logged">
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+          <img [src]="user$.avatar" alt="A" class="avatar avatar-sm" >
+          <div class="d-none d-xl-block ps-2">
+            <div>{{ user$.prenom ?? "Prénom" }} {{ user$.nom ?? "Nom" }}</div>
+            <div class="mt-1 small text-muted">{{ user$.role ?? 'Fonction' }}</div>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <!-- <a class="dropdown-item">Set status</a>
+          <a class="dropdown-item">Profile & account</a>
+          <a class="dropdown-item">Feedback</a>
+          <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item">Réglages</a>
+          <a class="dropdown-item" (click)="logout()">Déconnexion</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+        <ul class="navbar-nav" *ngFor="let link of links">
+          <li class="nav-item" *ngIf="link.route">
+            <a class="nav-link" [routerLink]="link.route" >
+                <span class="nav-link-title">
+                  {{ link.name }}
+                </span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<ng-template #loginModalID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title text-center">Connexion</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="loginForm" class="row">
+      <h2 class="card-title text-center mb-4 ">Connexion</h2>
+      <div class="mb-3">
+        <label class="form-label required">Email / Téléphone</label>
+        <div class="input-group input-group-flat">
+          <input type="email" formControlName="email" class="form-control" placeholder="Adresse mail ou Numéro de téléphone" value="client@test.com">
+          <span class="input-group-text" (click)="eraseEmailField()" type="button">
+            <a  class="link-secondary" title="Effacer" data-bs-toggle="tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="18" y1="6" x2="6" y2="18"></line> <line x1="6" y1="6" x2="18" y2="18"></line> </svg>
+            </a>
+          </span>
+        </div>
+        <div class="text-danger" *ngIf="email?.invalid && email?.touched">
+          Le format de l'email est invalide
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="form-label required">
+          Password
+          <span class="form-label-description">
+            <a routerLink="/forgotten">Réinitialiser mon mot de passe</a>
+          </span>
+        </label>
+        <div class="input-group input-group-flat">
+          <input [type]="inputPasswordType" class="form-control" formControlName="password"  placeholder="Mot de passe"  autocomplete="off" value="passer123456">
+          <span class="input-group-text" (click)="showPassword()" type="button">
+            <a  class="link-secondary" title="Afficher le mot de passe" data-bs-toggle="tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+            </a>
+          </span>
+        </div>
+        <div class="text-danger" *ngIf="password?.invalid && password?.touched">
+          Le mot de passe ne doit pas être vide et doit comporter au moins 12 caractères.
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!loginForm.valid" >Connexion</button>
+      </div>
+
+      <div class="text-center text-muted mt-3">
+        <div>
+          Vous n'avez pas encore de compte ? <a routerLink="/register" tabindex="-1">Inscrivez-vous !!</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #registerModalID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title text-center">Inscription</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="loginForm" class="row">
+      <h2 class="card-title text-center mb-4 ">Connexion</h2>
+      <div class="mb-3">
+        <label class="form-label required">Email</label>
+        <div class="input-group input-group-flat">
+          <input type="email" formControlName="email" class="form-control" placeholder="Adresse mail ou Numéro de téléphone" value="client@test.com">
+          <span class="input-group-text" (click)="eraseEmailField()" type="button">
+            <a  class="link-secondary" title="Effacer" data-bs-toggle="tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="18" y1="6" x2="6" y2="18"></line> <line x1="6" y1="6" x2="18" y2="18"></line> </svg>
+            </a>
+          </span>
+        </div>
+        <div class="text-danger" *ngIf="email?.invalid && email?.touched">
+          Le format de l'email est invalide
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="form-label required">
+          Password
+          <span class="form-label-description">
+            <a routerLink="/forgotten">Réinitialiser mon mot de passe</a>
+          </span>
+        </label>
+        <div class="input-group input-group-flat">
+          <input [type]="inputPasswordType" class="form-control" formControlName="password"  placeholder="Mot de passe"  autocomplete="off" value="passer123456">
+          <span class="input-group-text" (click)="showPassword()" type="button">
+            <a  class="link-secondary" title="Afficher le mot de passe" data-bs-toggle="tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+            </a>
+          </span>
+        </div>
+        <div class="text-danger" *ngIf="password?.invalid && password?.touched">
+          Le mot de passe ne doit pas être vide et doit comporter au moins 12 caractères.
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!loginForm.valid" >Connexion</button>
+      </div>
+
+      <div class="text-center text-muted mt-3">
+        <div>
+          Vous n'avez pas encore de compte ? <a routerLink="/register" tabindex="-1">Inscrivez-vous !!</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

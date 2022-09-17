@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Nav } from '../interfaces/nav';
-import { EnvService } from '../services/env.service';
+import { EnvService } from 'src/app/services/env.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,18 +10,20 @@ import { EnvService } from '../services/env.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  appName: string
+    appName: string
   logged: boolean = false
   user$: any
 
-  links: Nav[] = [
+  links: any = [
     { name: "Accueil", route: 'index' },
   ]
 
- loginForm: FormGroup = this.fb.group({
-    email: new FormControl(),
-    password: new FormControl(),
+  loginForm: FormGroup = this.fb.group({
+    email: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required, Validators.minLength(12)])
   })
+
+  inputPasswordType: string = "password"
 
   constructor(
     private _env: EnvService,
@@ -47,10 +48,34 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+    showPassword() {
+    if (this.inputPasswordType == "text") {
+      this.inputPasswordType = "password";
+    } else {
+      this.inputPasswordType = "text";
+    }
+  }
+  eraseEmailField(){
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: [this.loginForm.value.password, Validators.required]
+    })
+
+  }
+
+
     closeResult = '';
 
     open(content: any) {
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm'}).result.then((result) => {
         this.closeResult = `Closed with: result`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -66,5 +91,6 @@ export class NavbarComponent implements OnInit {
         return `with: reason`;
       }
     }
+
 
 }

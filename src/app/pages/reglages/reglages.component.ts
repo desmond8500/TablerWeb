@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Header } from 'src/app/interfaces/header';
 
 @Component({
   selector: 'app-reglages',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reglages.component.scss']
 })
 export class ReglagesComponent implements OnInit {
+  header: Header = {
+    title: "Réglages",
+    subtitle: "Réglages"
+  }
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
   }
