@@ -4,28 +4,38 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-      <a href="."> {{ appName }} </a>
+      <a routerLink="/"> {{ appName }} </a>
     </h1>
-    <div class="navbar-nav flex-row order-md-last">
 
+    <div class="navbar-nav flex-row order-md-last" *ngIf="!logged">
+      <div class="nav-item">
+        <div class="btn-list">
+            <button class="btn btn-primary" (click)="open(loginModalID)">Connexion</button>
+            <button class="btn btn-light" >Inscription</button>
+          </div>
+      </div>
+    </div>
+
+    <div class="navbar-nav flex-row order-md-last" *ngIf="logged">
       <div class="nav-item dropdown">
         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-          <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+          <img [src]="user$.avatar" alt="A" class="avatar avatar-sm" >
           <div class="d-none d-xl-block ps-2">
-            <div>Paweł Kuna</div>
-            <div class="mt-1 small text-muted">UI Designer</div>
+            <div>{{ user$.prenom ?? "Prénom" }} {{ user$.nom ?? "Nom" }}</div>
+            <div class="mt-1 small text-muted">{{ user$.role ?? 'Fonction' }}</div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a href="#" class="dropdown-item">Set status</a>
-          <a href="#" class="dropdown-item">Profile & account</a>
-          <a href="#" class="dropdown-item">Feedback</a>
+          <a class="dropdown-item">Set status</a>
+          <a class="dropdown-item">Profile & account</a>
+          <a class="dropdown-item">Feedback</a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Settings</a>
-          <a href="#" class="dropdown-item">Logout</a>
+          <a class="dropdown-item">Réglages</a>
+          <a class="dropdown-item" (click)="logout()">Déconnexion</a>
         </div>
       </div>
     </div>
+
     <div class="collapse navbar-collapse" id="navbar-menu">
       <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
         <ul class="navbar-nav" *ngFor="let link of links">
@@ -36,64 +46,24 @@
                 </span>
             </a>
           </li>
-          <!-- <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
-              <span class="nav-link-title">
-                Layout
-              </span>
-            </a>
-            <div class="dropdown-menu">
-              <div class="dropdown-menu-columns">
-                <div class="dropdown-menu-column">
-                  <a class="dropdown-item" href="./layout-horizontal.html">
-                    Horizontal
-                  </a>
-                  <a class="dropdown-item" href="./layout-boxed.html">
-                    Boxed
-                    <span class="badge badge-sm bg-green text-uppercase ms-2">New</span>
-                  </a>
-                  <a class="dropdown-item" href="./layout-vertical.html">
-                    Vertical
-                  </a>
-                  <a class="dropdown-item" href="./layout-vertical-transparent.html">
-                    Vertical transparent
-                  </a>
-                  <a class="dropdown-item" href="./layout-vertical-right.html">
-                    Right vertical
-                  </a>
-                  <a class="dropdown-item active" href="./layout-condensed.html">
-                    Condensed
-                  </a>
-                  <a class="dropdown-item" href="./layout-combo.html">
-                    Combined
-                  </a>
-                </div>
-                <div class="dropdown-menu-column">
-                  <a class="dropdown-item" href="./layout-navbar-dark.html">
-                    Navbar dark
-                  </a>
-                  <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                    Navbar sticky
-                  </a>
-                  <a class="dropdown-item" href="./layout-navbar-overlap.html">
-                    Navbar overlap
-                  </a>
-                  <a class="dropdown-item" href="./layout-rtl.html">
-                    RTL mode
-                  </a>
-                  <a class="dropdown-item" href="./layout-fluid.html">
-                    Fluid
-                  </a>
-                  <a class="dropdown-item" href="./layout-fluid-vertical.html">
-                    Fluid vertical
-                  </a>
-                </div>
-              </div>
-            </div>
-          </li> -->
         </ul>
       </div>
     </div>
   </div>
 </header>
+
+
+<ng-template #loginModalID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title text-center">Connexion</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form >
+
+
+
+    </form>
+  </div>
+</ng-template>
