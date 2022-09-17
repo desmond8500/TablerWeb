@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Nav } from '../interfaces/nav';
+import { EnvService } from '../services/env.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +8,16 @@ import { Nav } from '../interfaces/nav';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  appName: string
+
   links: Nav[] = [
     { name: "Accueil", route: 'index' },
-    { name: "Clients", route: 'clients' },
-    { name: "Plannings", route: 'plannings' },
   ]
-  constructor() { }
+  constructor(
+    private _env: EnvService
+  ) {
+    this.appName = this._env.getAppName()
+  }
 
   ngOnInit(): void {
   }
