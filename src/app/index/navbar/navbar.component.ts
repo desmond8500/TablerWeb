@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,8 +10,10 @@ import { EnvService } from 'src/app/services/env.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    appName: string
+  appName: string
   logged: boolean = false
+  inputPasswordType: string = "password"
+
   user$: any
 
   links: any = [
@@ -19,11 +21,10 @@ export class NavbarComponent implements OnInit {
   ]
 
   loginForm: FormGroup = this.fb.group({
+    name: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required, Validators.minLength(12)])
   })
-
-  inputPasswordType: string = "password"
 
   constructor(
     private _env: EnvService,
@@ -37,7 +38,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logging(){
+  login(){
     this.logged = true
   }
 
@@ -47,16 +48,14 @@ export class NavbarComponent implements OnInit {
     // this.route.navigate(['guest'])
   }
 
-
   get email() {
     return this.loginForm.get('email');
   }
-
   get password() {
     return this.loginForm.get('password');
   }
 
-    showPassword() {
+  showPassword() {
     if (this.inputPasswordType == "text") {
       this.inputPasswordType = "password";
     } else {
@@ -64,33 +63,56 @@ export class NavbarComponent implements OnInit {
     }
   }
   eraseEmailField(){
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: [this.loginForm.value.password, Validators.required]
+    this.loginForm.patchValue({
+      email: ''
     })
-
+  }
+  erasePasswordField(){
+    this.loginForm.patchValue({
+      password: ''
+    })
+  }
+  eraseNameField(){
+    this.loginForm.patchValue({
+      name: ''
+    })
   }
 
+  // Modals
+  @ViewChild('loginModalID') loginModal: any
+  @ViewChild('registerModalID') registerModal: any
+  @ViewChild('resetModalID') resetModal: any
 
-    closeResult = '';
+  openLoginModal(){
+    this.modalService.dismissAll()
+    this.modalService.open(this.loginModal)
+  }
+  openRegisterModal(){
+    this.modalService.dismissAll()
+    this.modalService.open(this.registerModal)
+  }
+  openResetModal(){
+    this.modalService.dismissAll()
+    this.modalService.open(this.resetModal)
+  }
 
-    open(content: any) {
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm'}).result.then((result) => {
-        this.closeResult = `Closed with: result`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+  closeResult = '';
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm'}).result.then((result) => {
+      this.closeResult = `Closed with: result`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: reason`;
     }
-
-    private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-        return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-        return 'by clicking on a backdrop';
-      } else {
-        return `with: reason`;
-      }
-    }
-
-
+  }
 }
