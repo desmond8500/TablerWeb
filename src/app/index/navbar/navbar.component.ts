@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Info } from 'src/app/interfaces/info';
 import { EnvService } from 'src/app/services/env.service';
 
 @Component({
@@ -39,13 +40,23 @@ export class NavbarComponent implements OnInit {
   }
 
   login(){
-    this.logged = true
+    // this.logged = true
+    // this.info.message
+    this.modalService.dismissAll()
   }
 
   logout(){
     this.logged = false
     // localStorage.clear()
     // this.route.navigate(['guest'])
+  }
+
+  register(){
+    console.log(this.loginForm.value);
+  }
+
+  reset(){
+    console.log(this.loginForm.value);
   }
 
   get email() {
@@ -82,6 +93,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild('loginModalID') loginModal: any
   @ViewChild('registerModalID') registerModal: any
   @ViewChild('resetModalID') resetModal: any
+  @ViewChild('infoModalID') infoModal: any
 
   openLoginModal(){
     this.modalService.dismissAll()
@@ -94,6 +106,16 @@ export class NavbarComponent implements OnInit {
   openResetModal(){
     this.modalService.dismissAll()
     this.modalService.open(this.resetModal)
+  }
+
+  info: Info = {
+    titre: "Information",
+    message: "Hello",
+    type: "info"
+  }
+  openInfoModal(){
+    this.modalService.dismissAll()
+    this.modalService.open(this.infoModal)
   }
 
   closeResult = '';
