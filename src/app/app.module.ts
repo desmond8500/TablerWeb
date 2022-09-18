@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './index/navbar/navbar.component';
 import { HeaderComponent } from './index/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
+import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { IndexComponent } from './pages/index/index.component';
     NotFoundComponent,
     NavbarComponent,
     HeaderComponent,
-    IndexComponent
+    IndexComponent,
+    InfoModalComponent
   ],
   imports: [
     BrowserModule,

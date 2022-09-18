@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Header } from 'src/app/interfaces/header';
 
 @Component({
@@ -11,9 +12,17 @@ export class IndexComponent implements OnInit {
     title: "Dashbord",
     subtitle: "Dashbord",
   }
-  constructor() { }
+  constructor(
+    private modalService: NgbModal,
+  ) { }
+
+  @ViewChild('infoModalID') infoModal: any
 
   ngOnInit(): void {
+  }
+
+  load(){
+    this.modalService.open(this.infoModal)
   }
 
 }

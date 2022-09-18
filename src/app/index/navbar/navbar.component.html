@@ -12,6 +12,7 @@
         <div class="btn-list">
             <button class="btn btn-primary" (click)="open(loginModalID)">Connexion</button>
             <button class="btn btn-light" (click)="open(registerModalID)" >Inscription</button>
+            <button class="btn btn-success" (click)="openInfoModal()" >info</button>
           </div>
       </div>
     </div>
@@ -102,7 +103,7 @@
       </div>
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100" >Connexion</button>
+        <button (click)="login()" class="btn btn-primary w-100" >Connexion</button>
       </div>
 
       <div class="text-center text-muted mt-3">
@@ -175,7 +176,7 @@
       </div>
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100" >Inscription</button>
+        <button (click)="register()" class="btn btn-primary w-100" >Inscription</button>
       </div>
 
       <div class="text-center text-muted mt-3">
@@ -213,9 +214,25 @@
       </div>
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100" >Réinitialiser</button>
+        <button (click)="reset()" class="btn btn-primary w-100" >Réinitialiser</button>
       </div>
 
     </form>
+  </div>
+</ng-template>
+
+<ng-template #infoModalID let-modal>
+  <div class="card info"
+    [class.info]="info.type=='info'"
+    [class.danger]="info.type=='danger'"
+    [class.warning]="info.type=='warning'"
+    [class.success]="info.type=='success'"
+    >
+    <div class="card-body ">
+      <h2 class="card-title text-center">{{ info.titre }}</h2>
+      <p class="text-muted" [innerHtml]="info.message" >
+
+      </p>
+    </div>
   </div>
 </ng-template>
