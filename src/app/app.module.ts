@@ -14,6 +14,9 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { HeaderComponent } from './index/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
+import { ArticlesComponent } from './stock/articles/articles.component';
+import { ProvidersComponent } from './stock/providers/providers.component';
+import { BrandsComponent } from './stock/brands/brands.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     NavbarComponent,
     HeaderComponent,
     IndexComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    ArticlesComponent,
+    ProvidersComponent,
+    BrandsComponent
   ],
   imports: [
     BrowserModule,
