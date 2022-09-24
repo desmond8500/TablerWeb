@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  serverLink: string = ""
+  serverLink: string = "http://localhost:8000"
   appTitle: string = "Tabler"
 
   constructor(
-    private _hhtp: HttpClient
+    private _http: HttpClient
   ) { }
 
   getServerLink(){

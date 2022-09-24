@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Header } from 'src/app/interfaces/header';
 
 @Component({
   selector: 'app-articles',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-
+  header: Header = {
+    title: 'Articles',
+    subtitle: 'Stock'
+  }
   constructor() { }
 
   ngOnInit(): void {
