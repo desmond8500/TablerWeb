@@ -17,6 +17,8 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 import { ArticlesComponent } from './stock/articles/articles.component';
 import { ProvidersComponent } from './stock/providers/providers.component';
 import { BrandsComponent } from './stock/brands/brands.component';
+import { ArticleCardComponent } from './stock/articles/article-card/article-card.component';
+import { ArticleAddModalComponent } from './stock/articles/article-add-modal/article-add-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { BrandsComponent } from './stock/brands/brands.component';
     InfoModalComponent,
     ArticlesComponent,
     ProvidersComponent,
-    BrandsComponent
+    BrandsComponent,
+    ArticleCardComponent,
+    ArticleAddModalComponent
   ],
   imports: [
     BrowserModule,

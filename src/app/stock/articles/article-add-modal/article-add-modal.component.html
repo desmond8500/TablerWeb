@@ -1,0 +1,85 @@
+<button class="btn btn-primary" (click)="open(content)">
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+  Article
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="linkForm" class="row">
+      <div class="col-md-12 mb-1">
+            <label class="form-label required">Lien</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Url de l'article à importer" formControlName="link">
+              <button class="btn btn-primary" (click)="getArticle()">Lien</button>
+            </div>
+      </div>
+
+    </form>
+
+    <form [formGroup]="articleForm">
+      <div class="row ">
+
+        <div class="col-auto">
+          <img [src]="articleForm.value.photo" [alt]="articleForm.value.photo" class="avatar avatar-md">
+        </div>
+
+        <div class="col-md-10 mb-1">
+            <label class="form-label required">Désignation</label>
+            <input type="text" class="form-control" placeholder="Désignation" formControlName="name">
+        </div>
+
+        <div class="col-md-6 mb-1">
+            <label class="form-label required">Réference</label>
+            <input type="text" class="form-control" placeholder="Réference" formControlName="reference">
+        </div>
+
+        <div class="col-md-6 mb-1">
+            <label class="form-label required">Priorité</label>
+            <select class="form-select" formControlName="priority">
+                <option value="priority.level" *ngFor="let priority of priorities"> {{ priority.name }} </option>
+            </select>
+        </div>
+        <div class="col-md-12 mb-1">
+            <label class="form-label">Description</label>
+            <textarea cols="30" rows="3" lass="form-control" class="form-control" placeholder="Description de l'article"
+                formControlName="description"></textarea>
+        </div>
+        <div class="col-md-6 mb-1">
+            <label class="form-label">Prix</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Prix" formControlName="price">
+              <button class="btn btn-primary btn-icon" (click)="convert()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path> </svg>
+              </button>
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <label class="form-label">Quantité</label>
+            <input type="text" class="form-control" placeholder="Quantité" formControlName="quantity">
+        </div>
+        <div class="col-md-6 mb-1">
+            <label class="form-label">Marque</label>
+            <select class="form-select" formControlName="brand_id">
+                <option value=" brand.id "> brand.name </option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-1">
+            <label class="form-label">Fournisseur</label>
+            <select class="form-select" formControlName="provider_id">
+                <option value="priority.level" *ngFor="let priority of priorities"> {{ priority.name }} </option>
+            </select>
+        </div>
+    </div>
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+    <button class="btn btn-primary" (click)="addArticle()" >Ajouter</button>
+  </div>
+</ng-template>

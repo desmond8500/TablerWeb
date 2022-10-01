@@ -28,4 +28,27 @@ export class ArticleService {
   deleteArticle(postForm :any):Observable<any>{
     return this._http.delete(this.server+'/articles'+postForm.id)
   }
+  article_url(postForm:any):Observable<any>{
+    return this._http.post(this.server+'/article_url', postForm)
+  }
+
+  getPriorities(){
+    return [
+      { name: "Centrale 1",    level: 1 },
+      { name: "Centrale 2",    level: 2 },
+      { name: "Centrale 3",    level: 3 },
+      { name: "Organe 1",      level: 4 },
+      { name: "Organe 2",      level: 5 },
+      { name: "Organe 3",      level: 6 },
+      { name: "Cable 1",       level: 7 },
+      { name: "Cable 2",       level: 8 },
+      { name: "Accessoire 1",  level: 9 },
+      { name: "Accessoire 2",  level: 10 },
+      { name: "Forfait 1",     level: 11 },
+      { name: "Forfait 2",     level: 12 },
+    ]
+  }
+
+
+
 }
