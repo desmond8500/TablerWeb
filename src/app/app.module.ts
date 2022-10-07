@@ -19,6 +19,7 @@ import { ProvidersComponent } from './stock/providers/providers.component';
 import { BrandsComponent } from './stock/brands/brands.component';
 import { ArticleCardComponent } from './stock/articles/article-card/article-card.component';
 import { ArticleAddModalComponent } from './stock/articles/article-add-modal/article-add-modal.component';
+import { BrandAddModalComponent } from './stock/brands/brand-add-modal/brand-add-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ArticleAddModalComponent } from './stock/articles/article-add-modal/art
     ProvidersComponent,
     BrandsComponent,
     ArticleCardComponent,
-    ArticleAddModalComponent
+    ArticleAddModalComponent,
+    BrandAddModalComponent
   ],
   imports: [
     BrowserModule,

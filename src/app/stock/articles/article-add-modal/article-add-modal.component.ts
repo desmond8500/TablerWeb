@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleService } from 'src/app/services/article.service';
@@ -10,6 +10,8 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ArticleAddModalComponent implements OnInit {
   @Output() articleAddEvent = new EventEmitter<any>()
+  @ViewChild('editArticle') editArticleModal: any
+
   article: any
   priorities: any
   brands: any
@@ -92,6 +94,10 @@ export class ArticleAddModalComponent implements OnInit {
     this.articleForm.patchValue({
       price: this.articleForm.value.price*655
     })
+  }
+
+  editArticle(){
+
   }
 
   // Modal
