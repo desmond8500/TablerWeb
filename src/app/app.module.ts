@@ -14,9 +14,7 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { HeaderComponent } from './index/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
-import { ClientsComponent } from './erp/clients/clients.component';
-import { ProjetsComponent } from './erp/projets/projets.component';
-import { InvoicesComponent } from './erp/invoices/invoices.component';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +27,6 @@ import { InvoicesComponent } from './erp/invoices/invoices.component';
     HeaderComponent,
     IndexComponent,
     InfoModalComponent,
-    ClientsComponent,
-    ProjetsComponent,
-    InvoicesComponent
   ],
   imports: [
     BrowserModule,
