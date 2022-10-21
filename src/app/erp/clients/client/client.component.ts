@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Header } from 'src/app/interfaces/header';
 import { ClientService } from 'src/app/services/client.service';
 
@@ -11,6 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
+  @ViewChild('editClientID') editClientModal: any
   header: Header = {
     title: 'Client',
     subtitle: 'Clients'
@@ -19,12 +20,12 @@ export class ClientComponent implements OnInit {
   client$: any
   projets$: any
 
-   constructor(
-      private route: ActivatedRoute,
-      private modalService: NgbModal,
-      private fb: FormBuilder,
-      private _client: ClientService,
-    ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private _client: ClientService,
+  ) {}
 
   ngOnInit(): void {
      this.user_id = this.route.snapshot.paramMap.get('id');
@@ -32,19 +33,16 @@ export class ClientComponent implements OnInit {
   }
 
   getclient(){
-    this._client.getClient({id: this.user_id}).subscribe(
-      res => {
-        // console.log(res)
+    this._client.getClient({id: this.user_id}).subscribe({
+      next: (res) => {
         this.client$ = res.data
       },
-      err => {
-        // console.log(err)
-      }
-    )
+    })
   }
 
   getProjets(){
 
   }
+
 
 }

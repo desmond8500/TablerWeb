@@ -10,6 +10,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { HeaderComponent } from './header/header.component';
 import { ClientComponent } from './clients/client/client.component';
 import { NgbAccordionModule, NgbDatepickerModule, NgbNavModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClientCardComponent } from './clients/client-card/client-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NgbAccordionModule, NgbDatepickerModule, NgbNavModule, NgbRatingModule 
     ClientAddComponent,
     HeaderComponent,
     ClientComponent,
+    ClientCardComponent,
   ],
   imports: [
     CommonModule,

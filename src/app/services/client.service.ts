@@ -25,9 +25,9 @@ export class ClientService {
     return this._http.post(this.server+'/clients', postForm)
   }
   updateClient(postForm :any):Observable<any>{
-    return this._http.patch(this.server+'/clients'+postForm.id, postForm)
+    return this._http.patch(this.server+'/clients/'+postForm.id, postForm)
   }
   deleteClient(postForm :any):Observable<any>{
-    return this._http.delete(this.server+'/clients'+postForm.id)
+    return this._http.delete(this.server+'/clients/'+postForm.id)
   }
 }
