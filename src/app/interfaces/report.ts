@@ -1,7 +1,8 @@
 export interface Report {
-  projet_id: number,
+  id?: string,
+  projet_id: string,
   objet: string,
   description: string,
-  date: string,
+  date?: any,
   type: string,
 }

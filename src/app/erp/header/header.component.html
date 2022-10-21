@@ -2,7 +2,19 @@
   <div class="row align-items-center">
     <div class="col">
       <div class="page-pretitle">
-        {{ header.subtitle }}
+        <div *ngIf="!breadcrumbs">
+          {{ header.subtitle }}
+        </div>
+
+        <div class="mb-1" *ngIf="breadcrumbs">
+          <ol class="breadcrumb" aria-label="breadcrumbs">
+
+            <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+              <a [routerLink]="breadcrumb.route">{{ breadcrumb.name }}</a>
+            </li>
+          </ol>
+        </div>
+
       </div>
       <h2 class="page-title">
         {{ header.title }}

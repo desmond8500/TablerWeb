@@ -15,6 +15,9 @@ export class ProjetService {
 
   // Projet
 
+  getProjet(form:any):Observable<any>{
+    return this._http.get(this.server+'/projets/'+form.id)
+  }
   getProjets(form:any):Observable<any>{
     return this._http.post(this.server+'/projets',form)
   }

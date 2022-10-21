@@ -3,10 +3,10 @@
     <app-header [header]="header"></app-header>
   </div>
   <div class="col-md-6 text-end mb-3">
-    <app-client-add (relaodEvent)="reload($event)"></app-client-add>
+    <app-client-add (relaod)="getClients()"></app-client-add>
   </div>
 
-  <div class="mb-3 col-md-3" *ngFor="let client of clients$">
+  <div class="col-md-3" *ngFor="let client of clients$">
     <div class="p-2">
       <app-client-card [client]="client" (click)="goToClient(client.id)" type="button"></app-client-card>
     </div>

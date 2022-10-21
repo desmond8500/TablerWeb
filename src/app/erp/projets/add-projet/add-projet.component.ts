@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from 'src/app/services/data.service';
@@ -11,12 +11,13 @@ import { ProjetService } from 'src/app/services/projet.service';
 })
 export class AddProjetComponent implements OnInit {
   @Input() client_id: any
+  @Output() relaod: any = new EventEmitter()
   statuts: any
 
   projetForm: FormGroup = this.fb.group({
     client_id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
-    type: new FormControl(1, [Validators.required]),
+    status: new FormControl(1, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required, Validators.minLength(12)])
   })
@@ -39,7 +40,7 @@ export class AddProjetComponent implements OnInit {
 
     this._projet.addProjet(projet).subscribe({
       next: (res) => {
-        console.log(res)
+        this.relaod.emit(1)
         this.modalService.dismissAll()
       },
       error: (error) => console.log(error),

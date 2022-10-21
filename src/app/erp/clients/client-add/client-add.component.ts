@@ -10,7 +10,7 @@ import { EnvService } from 'src/app/services/env.service';
   styleUrls: ['./client-add.component.scss']
 })
 export class ClientAddComponent implements OnInit {
-  @Output() relaodEvent: any = new EventEmitter()
+  @Output() relaod: any = new EventEmitter()
   clientForm: FormGroup = this.fb.group({
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(null, []),
@@ -32,12 +32,11 @@ export class ClientAddComponent implements OnInit {
     this._client.addClient(this.clientForm.value).subscribe(res => {
       console.log(res)
       this.modalService.dismissAll()
-      this.relaodEvent.emit(1)
+      this.relaod.emit(1)
     },
     err => {
       console.log(err)
     })
-
   }
 
   closeResult = '';

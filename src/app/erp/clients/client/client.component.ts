@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Breadcrumb } from 'src/app/interfaces/breadcrumb';
 import { Header } from 'src/app/interfaces/header';
 import { ClientService } from 'src/app/services/client.service';
 import { ProjetService } from 'src/app/services/projet.service';
@@ -17,9 +18,15 @@ export class ClientComponent implements OnInit {
     title: 'Client',
     subtitle: 'Clients'
   }
-  user_id: any
+  client_id: any
   client$: any
   projets$: any
+
+  breadcrumbs: any = [
+    { name: "ERP", route: '/erp/clients' },
+    { name: "Clients", route: '/erp/clients' },
+    { name: "Client", route: '.' },
+  ]
 
   constructor(
     private route: ActivatedRoute,
@@ -30,27 +37,24 @@ export class ClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id = this.route.snapshot.paramMap.get('id');
+    this.client_id = this.route.snapshot.paramMap.get('id');
     this.getclient()
     this.getProjets()
   }
 
   getclient(){
-    this._client.getClient({id: this.user_id}).subscribe({
+    this._client.getClient({id: this.client_id}).subscribe({
       next: (res) => {
         this.client$ = res.data
-        // this.getProjets(this.client$.id)
+        this.header.title = this.client$?.name
       },
     })
   }
 
   getProjets(){
-    this._projet.getClientProjets({client_id: this.user_id}).subscribe({
+    this._projet.getClientProjets({client_id: this.client_id}).subscribe({
       next: (res) => { this.projets$ = res.data },
       error: (error) => console.log(error),
     })
   }
-
-
-
 }

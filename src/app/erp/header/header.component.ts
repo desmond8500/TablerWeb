@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
     title: 'Tableau de bord',
     subtitle: 'Tableau de bord',
   };
+  @Input() breadcrumbs: any
   constructor() { }
 
   ngOnInit(): void {

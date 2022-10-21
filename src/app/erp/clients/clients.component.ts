@@ -24,10 +24,6 @@ export class ClientsComponent implements OnInit {
     this.getClients()
   }
 
-  reload(event: any){
-    this.getClients()
-  }
-
   getClients(){
     this._client.getClients().subscribe(
       res => {
