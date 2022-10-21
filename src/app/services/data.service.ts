@@ -13,6 +13,12 @@ export class DataService {
     { code: 4, name: "Annulé" },
     { code: 5, name: "Terminé" },
   ]
+  reportType: any = [
+    { code: 1, name: "Rapport de visite"},
+    { code: 2, name: "Rapport d'intervention" },
+    { code: 3, name: "Rapport d'incident" },
+    { code: 4, name: "Proposition technique" },
+  ]
 
   constructor(
     private _env: EnvService,

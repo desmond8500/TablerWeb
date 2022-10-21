@@ -14,6 +14,11 @@ import { ClientCardComponent } from './clients/client-card/client-card.component
 import { AddProjetComponent } from './projets/add-projet/add-projet.component';
 import { ProjetCardComponent } from './projets/projet-card/projet-card.component';
 import { ProjetComponent } from './projets/projet/projet.component';
+import { ReportsComponent } from './report/reports/reports.component';
+import { ReportComponent } from './report/report/report.component';
+import { ReportCardComponent } from './report/report-card/report-card.component';
+import { ProjetResumeComponent } from './projets/projet-resume/projet-resume.component';
+import { ReportAddComponent } from './report/report-add/report-add.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { ProjetComponent } from './projets/projet/projet.component';
     AddProjetComponent,
     ProjetCardComponent,
     ProjetComponent,
+    ReportsComponent,
+    ReportComponent,
+    ReportCardComponent,
+    ProjetResumeComponent,
+    ReportAddComponent,
   ],
   imports: [
     CommonModule,

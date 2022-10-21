@@ -16,6 +16,7 @@ export class ProjetComponent implements OnInit {
     subtitle: "ERP",
   }
   projet_id: any
+  active: any
 
   constructor(
     private route: ActivatedRoute,
