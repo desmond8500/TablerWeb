@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Header } from 'src/app/interfaces/header';
 import { ClientService } from 'src/app/services/client.service';
+import { ProjetService } from 'src/app/services/projet.service';
 
 @Component({
   selector: 'app-client',
@@ -25,24 +26,31 @@ export class ClientComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private _client: ClientService,
+    private _projet: ProjetService,
   ) {}
 
   ngOnInit(): void {
-     this.user_id = this.route.snapshot.paramMap.get('id');
-     this.getclient()
+    this.user_id = this.route.snapshot.paramMap.get('id');
+    this.getclient()
+    this.getProjets()
   }
 
   getclient(){
     this._client.getClient({id: this.user_id}).subscribe({
       next: (res) => {
         this.client$ = res.data
+        // this.getProjets(this.client$.id)
       },
     })
   }
 
   getProjets(){
-
+    this._projet.getClientProjets({client_id: this.user_id}).subscribe({
+      next: (res) => { this.projets$ = res.data },
+      error: (error) => console.log(error),
+    })
   }
+
 
 
 }

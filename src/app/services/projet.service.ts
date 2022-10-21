@@ -16,15 +16,18 @@ export class ProjetService {
   // Projet
 
   getProjets(form:any):Observable<any>{
-    return this._http.post(this.server+'/projets_by_client',form)
+    return this._http.post(this.server+'/projets',form)
+  }
+  getClientProjets(form:any):Observable<any>{
+    return this._http.post(this.server+'/client_projects',form)
   }
   addProjet(postForm:any):Observable<any>{
     return this._http.post(this.server+'/projets', postForm)
   }
   updateProjet(postForm :any):Observable<any>{
-    return this._http.patch(this.server+'/projets'+postForm.id, postForm)
+    return this._http.patch(this.server+'/projets/'+postForm.id, postForm)
   }
   deleteProjet(postForm :any):Observable<any>{
-    return this._http.delete(this.server+'/projets'+postForm.id)
+    return this._http.delete(this.server+'/projets/'+postForm.id)
   }
 }

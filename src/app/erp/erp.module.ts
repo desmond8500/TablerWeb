@@ -11,6 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { ClientComponent } from './clients/client/client.component';
 import { NgbAccordionModule, NgbDatepickerModule, NgbNavModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientCardComponent } from './clients/client-card/client-card.component';
+import { AddProjetComponent } from './projets/add-projet/add-projet.component';
+import { ProjetCardComponent } from './projets/projet-card/projet-card.component';
+import { ProjetComponent } from './projets/projet/projet.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { ClientCardComponent } from './clients/client-card/client-card.component
     HeaderComponent,
     ClientComponent,
     ClientCardComponent,
+    AddProjetComponent,
+    ProjetCardComponent,
+    ProjetComponent,
   ],
   imports: [
     CommonModule,
