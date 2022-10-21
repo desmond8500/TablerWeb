@@ -18,14 +18,19 @@
         </a>
       </div>
       <div class="col-md mb-3">
-        <label class="form-label">Nom du client</label>
-        <input type="text" formControlName="name" class="form-control" placeholder="Nom">
+        <label class="form-label">Objet du rapport</label>
+        <input type="text" formControlName="objet" class="form-control" placeholder="Nom">
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" formControlName="date" class="form-control">
       </div>
 
-      <div class="col-md-12 mb-3">
-        <label class="form-label">Nom du client</label>
-        <select class="form-select" formControlName="select">
-          <option value="" *ngFor="let reportType of reportTypes">Sélectionner</option>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Type de rapport</label>
+        <select class="form-select" formControlName="type">
+          <option [value]="reportType.code" *ngFor="let reportType of reportTypes">{{ reportType.name }}</option>
         </select>
       </div>
 
