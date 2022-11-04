@@ -16,6 +16,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -36,6 +37,9 @@ registerLocaleData(localeFr);
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    HeaderComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},

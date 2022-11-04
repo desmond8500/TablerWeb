@@ -49,6 +49,7 @@ import { StageCardComponent } from './building/stage-card/stage-card.component';
     BuildingCardComponent,
     StageAddComponent,
     StageCardComponent,
+
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,7 @@ import { StageCardComponent } from './building/stage-card/stage-card.component';
     NgbAccordionModule,
     NgbNavModule,
     NgbDatepickerModule,
-    TablerIconsModule.pick(TablerIcons)
+    TablerIconsModule.pick(TablerIcons),
     // NgxPaginationModule,
   ],
 })
