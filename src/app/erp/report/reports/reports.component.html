@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md">
     <div class="row">
-      <div class="col-md-4" *ngFor="let report of reports$">
+      <div class="col-md-4 mb-1" *ngFor="let report of reports$">
         <app-report-card [report]="report" (reload)="getReports()" [editButton]="true"></app-report-card>
       </div>
     </div>
 
   </div>
   <div class="col-auto">
-    <app-report-add [projet_id]="projet_id"></app-report-add>
+    <app-report-add [projet_id]="projet_id" (reloadEvent)="getReports()"></app-report-add>
   </div>
 </div>

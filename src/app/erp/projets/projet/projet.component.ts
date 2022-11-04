@@ -19,12 +19,12 @@ export class ProjetComponent implements OnInit {
   projet_id: any
   projet$: any
   client$: any
-  active: any = 3
+  active: any = 6
 
    breadcrumbs: any = [
     { name: "ERP", route: '/erp/clients' },
     { name: "Clients", route: '/erp/clients' },
-    { name: "Client", route: '/erp/clients/client' },
+    { name: "Client", route: '/erp/client' },
     { name: "Projet", route: '/erp/projet' },
   ]
 
@@ -57,6 +57,7 @@ export class ProjetComponent implements OnInit {
         console.log(res)
         this.client$ = res.data
         this.breadcrumbs[2].name = this.client$.name
+        this.breadcrumbs[2].route = '/erp/client/'+this.client$.id
       },
       error: (error) => console.log(error),
     })

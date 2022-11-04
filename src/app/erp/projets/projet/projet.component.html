@@ -70,6 +70,14 @@
         </div>
       </ng-template>
     </li>
+    <li [ngbNavItem]="6">
+      <a ngbNavLink>Batiment</a>
+      <ng-template ngbNavContent>
+        <div class="card card-body">
+          <app-buildings [projet_id]="projet_id"></app-buildings>
+        </div>
+      </ng-template>
+    </li>
   </ul>
 </div>
 

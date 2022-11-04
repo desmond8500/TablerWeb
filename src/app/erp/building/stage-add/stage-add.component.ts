@@ -1,46 +1,41 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Report } from 'src/app/interfaces/report';
-import { DataService } from 'src/app/services/data.service';
-import { ReportService } from 'src/app/services/report.service';
+import { Stage } from 'src/app/interfaces/stage';
+import { BuildingService } from 'src/app/services/building.service';
+import { StageService } from 'src/app/services/stage.service';
 
 @Component({
-  selector: 'app-report-add',
-  templateUrl: './report-add.component.html',
-  styleUrls: ['./report-add.component.scss']
+  selector: 'app-stage-add',
+  templateUrl: './stage-add.component.html',
+  styleUrls: ['./stage-add.component.scss']
 })
-export class ReportAddComponent implements OnInit {
-  @Input() projet_id: any
+export class StageAddComponent implements OnInit {
+  @Input() building_id: any
   @Output() reloadEvent = new EventEmitter()
 
-  reportTypes: any = this._data.reportType
-  reportForm: FormGroup = this.fb.group({
-    projet_id: new FormControl(null, [Validators.required]),
-    objet: new FormControl(null, [Validators.required]),
-    description: new FormControl(null, [Validators.required]),
-    date: new FormControl(null, [Validators.required]),
-    type: new FormControl(null, [Validators.required]),
+  stageForm: FormGroup = this.fb.group({
+    building_id: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [Validators.required]),
+    // order: new FormControl(),
+    description: new FormControl(),
   })
 
   constructor(
-    private route: Router,
     private modalService: NgbModal,
     private fb: FormBuilder,
-    private _report: ReportService,
-    private _data: DataService,
-  ) {}
+    private _stage: StageService,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  addReport(){
-    let form: Report = this.reportForm.value
-    form.projet_id = this.projet_id
+  addStage(){
+    let form: Stage = this.stageForm.value
+    form.building_id = this.building_id
     console.log(form);
 
-    this._report.addReport(form).subscribe({
+    this._stage.addStage(form).subscribe({
       next: (res) => {
         console.log(res)
         this.reloadEvent.emit()
@@ -69,4 +64,5 @@ export class ReportAddComponent implements OnInit {
       return `with: reason`;
     }
   }
+
 }

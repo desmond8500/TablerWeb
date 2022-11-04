@@ -19,10 +19,17 @@ import { ReportComponent } from './report/report/report.component';
 import { ReportCardComponent } from './report/report-card/report-card.component';
 import { ProjetResumeComponent } from './projets/projet-resume/projet-resume.component';
 import { ReportAddComponent } from './report/report-add/report-add.component';
+import { BuildingsComponent } from './building/buildings/buildings.component';
+import { BuildingAddComponent } from './building/building-add/building-add.component';
+import { BuildingCardComponent } from './building/building-card/building-card.component';
+import { StageAddComponent } from './building/stage-add/stage-add.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import * as TablerIcons from 'angular-tabler-icons/icons';
+import { StageCardComponent } from './building/stage-card/stage-card.component';
 
 @NgModule({
   declarations: [
-     ClientsComponent,
+    ClientsComponent,
     ProjetsComponent,
     InvoicesComponent,
     ClientAddComponent,
@@ -37,6 +44,11 @@ import { ReportAddComponent } from './report/report-add/report-add.component';
     ReportCardComponent,
     ProjetResumeComponent,
     ReportAddComponent,
+    BuildingsComponent,
+    BuildingAddComponent,
+    BuildingCardComponent,
+    StageAddComponent,
+    StageCardComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +58,7 @@ import { ReportAddComponent } from './report/report-add/report-add.component';
     NgbAccordionModule,
     NgbNavModule,
     NgbDatepickerModule,
+    TablerIconsModule.pick(TablerIcons)
     // NgxPaginationModule,
   ],
 })

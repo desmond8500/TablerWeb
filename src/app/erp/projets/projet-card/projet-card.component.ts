@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from 'src/app/services/data.service';
+import { ProjetService } from 'src/app/services/projet.service';
 
 @Component({
   selector: 'app-projet-card',
@@ -12,6 +13,8 @@ import { DataService } from 'src/app/services/data.service';
 export class ProjetCardComponent implements OnInit {
   @Input() projet: any
   @Input() editButton: any
+  @Output() reloadEvent = new EventEmitter()
+
   @ViewChild('editProjetID') editProjetModal: any
 
   statuts: any = this._data.statuts
@@ -19,7 +22,7 @@ export class ProjetCardComponent implements OnInit {
   projetForm: FormGroup = this.fb.group({
       client_id: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [Validators.required]),
-      status: new FormControl(null, [Validators.required]),
+      statut: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
     })
 
@@ -28,6 +31,7 @@ export class ProjetCardComponent implements OnInit {
     private fb: FormBuilder,
     private _data: DataService,
     private route: Router,
+    private _projet: ProjetService,
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +51,21 @@ export class ProjetCardComponent implements OnInit {
     this.modalService.open(this.editProjetModal)
   }
   updateProjet(){
-
+    let form = {
+      id: this.projet.id,
+      client_id: this.projetForm.value.client_id,
+      name: this.projetForm.value.name,
+      status: this.projetForm.value.status,
+      description: this.projetForm.value.description,
+    }
+    this._projet.updateProjet(form).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.modalService.dismissAll()
+        this.reloadEvent.emit()
+      },
+      error: (error) => console.log(error),
+    })
   }
   deleteProjet(){
 

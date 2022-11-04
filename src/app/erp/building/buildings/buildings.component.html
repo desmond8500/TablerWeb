@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let building of buildings$">
+        <app-building-card [building]="building" [editButton]="true" (reloadEvent)="getBuildings()"></app-building-card>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-auto">
+    <app-building-add (reloadEvent)="getBuildings()" [projet_id]="projet_id"></app-building-add>
+  </div>
+</div>
