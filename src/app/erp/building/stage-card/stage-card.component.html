@@ -54,33 +54,18 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <ul>
-      <li>articles</li>
-      <li>suivi</li>
-    </ul>
-
-
-
-    <!-- <form [formGroup]="stageForm" class="row">
-
-
-      <div class="col-md mb-3">
-        <label class="form-label">Nom du niveau</label>
-        <input type="text" formControlName="name" class="form-control" placeholder="Nom">
+    <div class="row">
+      <div class="col-md"></div>
+      <div class="col-md-auto">
+        <app-room-add [stage]="stage" (reloadEvent)="getRooms()"></app-room-add>
       </div>
+      <div class="w-100 mb-2"></div>
 
-      <div class="col-md-12 mb-3">
-        <label class="form-label">Description</label>
-        <textarea formControlName="description" class="form-control" cols="30" rows="3"
-          placeholder="Description du niveau"></textarea>
+      <div class="col-md-6 mb-1"  *ngFor="let room of rooms$">
+        <app-room-card [room]="room" (reloadEvent)="getRooms()"></app-room-card>
       </div>
+    </div>
 
-      <div class="col-md-12 mb-3 d-flex justify-content-between">
-        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
-        <button class="btn btn-primary" (click)="updateStage()">Modifier</button>
-      </div>
-
-    </form> -->
   </div>
 </ng-template>
 

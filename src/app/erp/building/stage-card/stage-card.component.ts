@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Stage } from 'src/app/interfaces/stage';
+import { RoomService } from 'src/app/services/room.service';
 import { StageService } from 'src/app/services/stage.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class StageCardComponent implements OnInit {
   @ViewChild('editStageID') editStageModal: any
   @ViewChild('stageID') stageModal: any
 
+  rooms$: any
+
   stageForm: FormGroup = this.fb.group({
     building_id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
@@ -26,9 +29,21 @@ export class StageCardComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private _stage: StageService,
+    private _room: RoomService,
   ) { }
 
   ngOnInit(): void {
+    this.getRooms()
+  }
+
+  getRooms(){
+    this._room.getRooms().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.rooms$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   showStage(){

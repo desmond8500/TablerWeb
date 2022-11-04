@@ -26,6 +26,9 @@ import { StageAddComponent } from './building/stage-add/stage-add.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { StageCardComponent } from './building/stage-card/stage-card.component';
+import { RoomCardComponent } from './building/room-card/room-card.component';
+import { RoomAddComponent } from './building/room-add/room-add.component';
+import { RoomArticleAddComponent } from './building/room-article-add/room-article-add.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { StageCardComponent } from './building/stage-card/stage-card.component';
     BuildingCardComponent,
     StageAddComponent,
     StageCardComponent,
+    RoomCardComponent,
+    RoomAddComponent,
+    RoomArticleAddComponent,
 
   ],
   imports: [
