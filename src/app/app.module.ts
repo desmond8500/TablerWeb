@@ -14,6 +14,8 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { HeaderComponent } from './index/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import * as TablerIcons from 'angular-tabler-icons/icons';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TablerIconsModule.pick(TablerIcons),
   ],
   providers: [],
   bootstrap: [AppComponent]
