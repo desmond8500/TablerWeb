@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EnvService {
   // serverLink: string = "http://localhost:8000/api"
-  serverLink: string = "https://dashlite.yonkou.info/api/"
+  serverLink: string = "https://dashlite.yonkou.info/api"
   appTitle: string = "Tabler"
 
   constructor(
