@@ -19,7 +19,7 @@ export class ProjetComponent implements OnInit {
   projet_id: any
   projet$: any
   client$: any
-  active: any = 6
+  active: any = 2
 
    breadcrumbs: any = [
     { name: "ERP", route: '/erp/clients' },

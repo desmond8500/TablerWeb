@@ -1,0 +1,34 @@
+<div *ngIf="status==1">
+  <span class="status status-grey">
+    <span class="status-dot"></span>
+    Nouveau
+  </span>
+</div>
+
+<div *ngIf="status==2">
+  <span class="status status-blue">
+    <span class="status-dot"></span>
+    En cours
+  </span>
+</div>
+
+<div *ngIf="status==3">
+  <span class="status status-orange">
+    <span class="status-dot"></span>
+    En pause
+  </span>
+</div>
+
+<div *ngIf="status==4">
+  <span class="status status-red">
+    <span class="status-dot"></span>
+    Annulé
+  </span>
+</div>
+
+<div *ngIf="status==5">
+  <span class="status status-green">
+    <span class="status-dot"></span>
+    Terminé
+  </span>
+</div>

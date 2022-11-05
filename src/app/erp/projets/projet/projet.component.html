@@ -19,17 +19,7 @@
     <li [ngbNavItem]="2">
       <a ngbNavLink>Devis</a>
       <ng-template ngbNavContent>
-        <div class="card card-body">
-          <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6 text-end">
-              <button class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-                Devis
-              </button>
-            </div>
-          </div>
-        </div>
+        <app-invoices [projet_id]="projet_id"></app-invoices>
       </ng-template>
     </li>
     <li [ngbNavItem]="3">
@@ -73,9 +63,7 @@
     <li [ngbNavItem]="6">
       <a ngbNavLink>Batiment</a>
       <ng-template ngbNavContent>
-        <div class="card card-body">
-          <app-buildings [projet_id]="projet_id"></app-buildings>
-        </div>
+        <app-buildings [projet_id]="projet_id"></app-buildings>
       </ng-template>
     </li>
   </ul>

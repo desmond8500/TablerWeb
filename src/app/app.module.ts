@@ -16,6 +16,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { StatusCardComponent } from './card/status-card/status-card.component';
 
 registerLocaleData(localeFr);
 
@@ -30,6 +31,7 @@ registerLocaleData(localeFr);
     HeaderComponent,
     IndexComponent,
     InfoModalComponent,
+    StatusCardComponent,
   ],
   imports: [
     BrowserModule,

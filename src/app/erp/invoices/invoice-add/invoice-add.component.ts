@@ -1,46 +1,50 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Room } from 'src/app/interfaces/room';
-import { RoomService } from 'src/app/services/room.service';
+import { Invoice } from 'src/app/interfaces/invoice';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
-  selector: 'app-room-add',
-  templateUrl: './room-add.component.html',
-  styleUrls: ['./room-add.component.scss']
+  selector: 'app-invoice-add',
+  templateUrl: './invoice-add.component.html',
+  styleUrls: ['./invoice-add.component.scss']
 })
-export class RoomAddComponent implements OnInit {
-  @Input() stage: any
+export class InvoiceAddComponent implements OnInit {
+  @Input() projet_id: any
   @Output() reloadEvent = new EventEmitter()
 
-  statut: boolean = true
-
-  roomForm: FormGroup = this.fb.group({
-    stage_id: new FormControl(null, [Validators.required]),
-    name: new FormControl(null, [Validators.required]),
-    // order: new FormControl(),
+  invoiceForm: FormGroup = this.fb.group({
+    projet_id: new FormControl(null, [Validators.required]),
+    reference: new FormControl(null, [Validators.required]),
+    status: new FormControl(1, [Validators.required]),
     description: new FormControl(),
+    client_name: new FormControl(),
+    client_tel: new FormControl(),
+    client_address: new FormControl(),
+    discount: new FormControl(0),
+    tva: new FormControl(0),
+    brs: new FormControl(0),
   })
 
   constructor(
     private modalService: NgbModal,
     private fb: FormBuilder,
-    private _room: RoomService,
+    private _invoice: InvoiceService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  addRoom(){
-    let form: Room = this.roomForm.value
-    form.stage_id = this.stage.id
+  addInvoice(){
+    let form: Invoice = this.invoiceForm.value
+    form.projet_id = this.projet_id
+    form.reference = "D-"
     console.log(form);
 
-    this._room.addRoom(form).subscribe({
+    this._invoice.addInvoice(form).subscribe({
       next: (res: any) => {
         console.log(res)
         this.reloadEvent.emit()
-        this.statut = false
       },
       error: (error: any) => console.log(error),
     })
@@ -65,6 +69,5 @@ export class RoomAddComponent implements OnInit {
       return `with: reason`;
     }
   }
-
 
 }
