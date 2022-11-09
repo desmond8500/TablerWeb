@@ -19,7 +19,7 @@ export class BuildingsComponent implements OnInit {
   }
 
   getBuildings(){
-    this._building.getBuildings().subscribe({
+    this._building.getProjetBuilding({projet_id: this.projet_id}).subscribe({
       next: (res) => {
         console.log(res)
         this.buildings$ = res.data

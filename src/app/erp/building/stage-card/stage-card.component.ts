@@ -37,7 +37,7 @@ export class StageCardComponent implements OnInit {
   }
 
   getRooms(){
-    this._room.getRooms().subscribe({
+    this._room.getStageRooms({stage_id: this.stage.id}).subscribe({
       next: (res: any) => {
         console.log(res)
         this.rooms$ = res.data

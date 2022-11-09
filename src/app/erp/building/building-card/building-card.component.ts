@@ -67,7 +67,7 @@ export class BuildingCardComponent implements OnInit {
   // stages
 
   getStages(){
-    this._stage.getStages().subscribe({
+    this._stage.getBuildingStages({building_id: this.building.id}).subscribe({
       next: (res) => {
         console.log(res)
         this.stages$ = res.data

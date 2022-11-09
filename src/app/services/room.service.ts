@@ -18,6 +18,9 @@ export class RoomService {
   getRooms():Observable<any>{
     return this._http.get(this.server+'/rooms')
   }
+  getStageRooms(form:any):Observable<any>{
+    return this._http.post(this.server+'/stage_rooms', form)
+  }
   addRoom(postForm:any):Observable<any>{
     return this._http.post(this.server+'/rooms', postForm)
   }
