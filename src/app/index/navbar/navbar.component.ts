@@ -19,6 +19,13 @@ export class NavbarComponent implements OnInit {
 
   links: any = [
     { name: "Accueil", route: 'index' },
+    {
+      name: "Sub2",
+      route: null,
+      sublinks: [
+        { name: "Accueil", route: 'index' },
+      ]
+    },
   ]
 
   loginForm: FormGroup = this.fb.group({
