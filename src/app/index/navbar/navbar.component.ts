@@ -21,6 +21,13 @@ export class NavbarComponent implements OnInit {
     { name: "Accueil", route: 'index' },
     { name: "Clients", route: 'erp/clients' },
     { name: "Stock", route: 'stock' },
+    {
+      name: "Sub2",
+      route: null,
+      sublinks: [
+        { name: "Accueil", route: 'index' },
+      ]
+    },
   ]
 
   loginForm: FormGroup = this.fb.group({
