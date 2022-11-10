@@ -1,0 +1,46 @@
+<div class="card p-2">
+  <div class="row">
+    <div class="col-auto" type="button">
+      <img src="" alt="A" class="avatar">
+    </div>
+    <div class="col" type="button">
+      <div class="fw-bold"> {{ provider.name }}</div>
+      <div class="text-muted" [innerHtml]="provider.description"></div>
+    </div>
+    <div class="col-auto">
+      <div class="btn btn-outline-primary btn-icon" (click)="editBrand()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #editProviderID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier une marque</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="providerForm" class="row">
+
+      <div class="col-md mb-3">
+        <label class="form-label">Nom de la marque</label>
+        <input type="text" formControlName="name" class="form-control" placeholder="Nom">
+      </div>
+
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">Description</label>
+        <textarea formControlName="description" class="form-control" cols="30" rows="3" placeholder="Description"></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-danger" (click)="deleteProvider()">Supprimer</button>
+        <button class="btn btn-primary" (click)="updateProvider()">Modifier</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

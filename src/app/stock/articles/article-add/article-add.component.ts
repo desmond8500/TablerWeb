@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-article-add',
@@ -8,38 +9,48 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./article-add.component.scss']
 })
 export class ArticleAddComponent implements OnInit {
-  @Input() projet_id: any
   @Output() reloadEvent = new EventEmitter()
 
   articleForm: FormGroup = this.fb.group({
-    projet_id: new FormControl(null, [Validators.required]),
-    name: new FormControl(null, [Validators.required]),
+    brand_id: new FormControl(),
+    provider_id: new FormControl(),
+    designation: new FormControl(null, [Validators.required]),
+    reference: new FormControl(null, [Validators.required]),
+    quantity: new FormControl(),
+    priority: new FormControl(),
+    price: new FormControl(),
+    image: new FormControl(),
     description: new FormControl(null, [Validators.required]),
   })
 
   constructor(
     private modalService: NgbModal,
     private fb: FormBuilder,
-    // private _building: BuildingService,
+    private _article: ArticleService,
+    private _privider: ArticleService,
+    private _brand: ArticleService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  //  addBuilding(){
-  //   let form: Building = this.buildingForm.value
-  //   form.projet_id = this.projet_id
-  //   console.log(form);
+  test(){
 
-  //   this._building.addBuilding(form).subscribe({
-  //     next: (res) => {
-  //       console.log(res)
-  //       this.reloadEvent.emit()
-  //       this.modalService.dismissAll()
-  //     },
-  //     error: (error) => console.log(error),
-  //   })
-  // }
+  }
+
+   add_Article(){
+    let form: any = this.articleForm.value
+    console.log(form);
+
+    this._article.addArticle(form).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.reloadEvent.emit()
+        this.modalService.dismissAll()
+      },
+      error: (error) => console.log(error),
+    })
+  }
 
   closeResult = '';
 

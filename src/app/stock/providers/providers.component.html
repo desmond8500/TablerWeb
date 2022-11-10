@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let provider of provider$">
+        <app-provider-card [provider]="provider" (reloadEvent)="getProviders()"></app-provider-card>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-auto">
+    <app-provider-add (reloadEvent)="getProviders()"></app-provider-add>
+  </div>
+</div>

@@ -20,12 +20,14 @@ export class NavbarComponent implements OnInit {
   links: any = [
     { name: "Accueil", route: 'index' },
     { name: "Clients", route: 'erp/clients' },
-    { name: "Stock", route: 'stock' },
     {
-      name: "Sub2",
+      name: "Stock",
       route: null,
       sublinks: [
-        { name: "Accueil", route: 'index' },
+        { name: "Articles", route: 'stock/stock' },
+        { name: "Achats", route: 'stock/achats' },
+        { name: "Fournisseurs", route: 'stock/providers' },
+        { name: "Marques", route: 'stock/marques' },
       ]
     },
   ]

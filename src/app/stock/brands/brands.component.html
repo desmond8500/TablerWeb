@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let brand of brand$">
+        <app-brand-card [brand]="brand" (reloadEvent)="getBrands()"></app-brand-card>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-auto">
+    <app-brand-add (reloadEvent)="getBrands()"></app-brand-add>
+  </div>
+</div>
