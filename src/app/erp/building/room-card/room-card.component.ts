@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Room } from 'src/app/interfaces/room';
+import { InvoiceService } from 'src/app/services/invoice.service';
 import { RoomService } from 'src/app/services/room.service';
 
 @Component({
@@ -15,22 +16,34 @@ export class RoomCardComponent implements OnInit {
   @ViewChild('editRoomID') editRoomModal: any
   @ViewChild('roomID') roomModal: any
 
-   roomForm: FormGroup = this.fb.group({
+  roomForm: FormGroup = this.fb.group({
     stage_id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
-    // order: new FormControl(),
     description: new FormControl(),
   })
 
   statut: boolean = true
+  invoice$: any
 
   constructor(
     private modalService: NgbModal,
     private fb: FormBuilder,
     private _room: RoomService,
+    private _invoice: InvoiceService,
   ) { }
 
   ngOnInit(): void {
+    this.getinvoices()
+  }
+
+  getinvoices(){
+    this._invoice.getRoom_invoices({room_id: this.room.id}).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.invoice$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   getArticles(){

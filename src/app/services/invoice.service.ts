@@ -22,6 +22,9 @@ export class InvoiceService {
   getProjet_invoices(form: any):Observable<any>{
     return this._http.get(this.server+'/projet_invoices', form)
   }
+  getRoom_invoices(form: any):Observable<any>{
+    return this._http.post(this.server+'/room_invoices', form)
+  }
   addInvoice(postForm:any):Observable<any>{
     return this._http.post(this.server+'/invoices', postForm)
   }

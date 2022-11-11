@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   links: any = [
     { name: "Accueil", route: 'index' },
     { name: "Clients", route: 'erp/clients' },
+    { name: "Contacts", route: 'contacts' },
     {
       name: "Stock",
       route: null,
