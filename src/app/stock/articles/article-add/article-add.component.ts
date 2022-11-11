@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleService } from 'src/app/services/article.service';
+import { BrandService } from 'src/app/services/brand.service';
+import { DataService } from 'src/app/services/data.service';
+import { ProviderService } from 'src/app/services/provider.service';
 
 @Component({
   selector: 'app-article-add',
@@ -10,14 +13,17 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ArticleAddComponent implements OnInit {
   @Output() reloadEvent = new EventEmitter()
+  priority$:any
+  brand$:any
+  provider$:any
 
   articleForm: FormGroup = this.fb.group({
     brand_id: new FormControl(),
     provider_id: new FormControl(),
     designation: new FormControl(null, [Validators.required]),
     reference: new FormControl(null, [Validators.required]),
-    quantity: new FormControl(),
-    priority: new FormControl(),
+    quantity: new FormControl(0),
+    priority: new FormControl(1),
     price: new FormControl(),
     image: new FormControl(),
     description: new FormControl(null, [Validators.required]),
@@ -27,18 +33,18 @@ export class ArticleAddComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private _article: ArticleService,
-    private _privider: ArticleService,
-    private _brand: ArticleService,
+    private _provider: ProviderService,
+    private _brand: BrandService,
+    private _data: DataService,
   ) { }
 
   ngOnInit(): void {
+    this.getBrands()
+    this.getProviders()
+    this.getPriorities()
   }
 
-  test(){
-
-  }
-
-   add_Article(){
+  add_Article(){
     let form: any = this.articleForm.value
     console.log(form);
 
@@ -49,6 +55,34 @@ export class ArticleAddComponent implements OnInit {
         this.modalService.dismissAll()
       },
       error: (error) => console.log(error),
+    })
+  }
+
+  getPriorities(){
+    this._data.getStatus().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.priority$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
+  getBrands(){
+    this._brand.getBrands().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.brand$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
+  getProviders(){
+    this._provider.getProviders().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.provider$ = res.data
+      },
+      error: (error: any) => console.log(error),
     })
   }
 

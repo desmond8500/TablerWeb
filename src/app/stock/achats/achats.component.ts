@@ -39,9 +39,6 @@ export class AchatsComponent implements OnInit {
     })
   }
 
-  // @Input() achat: any
-  // @Output() reloadEvent = new EventEmitter()
-
   editAchat(achat: any){
     this.achatForm.patchValue({
       id: achat.id,

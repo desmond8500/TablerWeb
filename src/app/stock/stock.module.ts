@@ -16,6 +16,7 @@ import { ProviderAddComponent } from './providers/provider-add/provider-add.comp
 import { AchatAddComponent } from './achats/achat-add/achat-add.component';
 import { AchatCardComponent } from './achats/achat-card/achat-card.component';
 import { AchatsComponent } from './achats/achats.component';
+import { HeaderComponent } from '../index/header/header.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AchatsComponent } from './achats/achats.component';
     AchatAddComponent,
     AchatCardComponent,
     AchatsComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
