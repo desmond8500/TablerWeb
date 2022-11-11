@@ -1,46 +1,65 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Stage } from 'src/app/interfaces/stage';
-import { StageService } from 'src/app/services/stage.service';
+import { Room } from 'src/app/interfaces/room';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
-  selector: 'app-stage-add',
-  templateUrl: './stage-add.component.html',
-  styleUrls: ['./stage-add.component.scss']
+  selector: 'app-room-generate',
+  templateUrl: './room-generate.component.html',
+  styleUrls: ['./room-generate.component.scss']
 })
-export class StageAddComponent implements OnInit {
-  @Input() building_id: any
+export class RoomGenerateComponent implements OnInit {
+
+  @Input() stage: any
   @Output() reloadEvent = new EventEmitter()
 
-  stageForm: FormGroup = this.fb.group({
-    building_id: new FormControl(null, [Validators.required]),
+  statut: boolean = true
+
+  generateForm: FormGroup = this.fb.group({
     name: new FormControl(null, [Validators.required]),
-    // order: new FormControl(),
+    from: new FormControl(),
+    to: new FormControl(),
+  })
+
+  roomForm: FormGroup = this.fb.group({
+    stage_id: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [Validators.required]),
     description: new FormControl(),
   })
 
   constructor(
     private modalService: NgbModal,
     private fb: FormBuilder,
-    private _stage: StageService,
+    private _room: RoomService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  addStage(){
-    let form: Stage = this.stageForm.value
-    form.building_id = this.building_id
+  generate(){
+    for (let index = this.generateForm.value.from; index <= this.generateForm.value.to; index++) {
+      this.roomForm.patchValue({
+        stage_id : this.stage.id,
+        name: this.generateForm.value.name+' '+index,
+      })
+      this.addRoom()
+    }
+  }
+
+
+  addRoom(){
+    let form: Room = this.roomForm.value
+    form.stage_id = this.stage.id
     console.log(form);
 
-    this._stage.addStage(form).subscribe({
-      next: (res) => {
+    this._room.addRoom(form).subscribe({
+      next: (res: any) => {
         console.log(res)
         this.reloadEvent.emit()
-        this.modalService.dismissAll()
+        this.statut = false
       },
-      error: (error) => console.log(error),
+      error: (error: any) => console.log(error),
     })
   }
 
@@ -63,5 +82,4 @@ export class StageAddComponent implements OnInit {
       return `with: reason`;
     }
   }
-
 }

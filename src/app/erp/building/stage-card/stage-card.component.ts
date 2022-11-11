@@ -72,6 +72,16 @@ export class StageCardComponent implements OnInit {
       error: (error) => console.log(error),
     })
   }
+  deleteStage(){
+    this._stage.deleteStage({id: this.stage.id}).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.reloadEvent.emit()
+        this.modalService.dismissAll()
+      },
+      error: (error) => console.log(error),
+    })
+  }
 
   closeResult = '';
 

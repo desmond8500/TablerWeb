@@ -1,5 +1,5 @@
 export interface Room {
-  id: string,
+  id?: string,
   stage_id: string,
   name: string,
   description?: string,
