@@ -7,7 +7,6 @@ import { ContactCardComponent } from './contact-card/contact-card.component';
 import { ContactsComponent } from './contacts.component';
 import { HeaderComponent } from '../index/header/header.component';
 
-
 @NgModule({
   declarations: [
     ContactAddComponent,
@@ -17,7 +16,7 @@ import { HeaderComponent } from '../index/header/header.component';
   ],
   imports: [
     CommonModule,
-    ContactsRoutingModule
+    ContactsRoutingModule,
   ]
 })
 export class ContactsModule { }
