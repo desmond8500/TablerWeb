@@ -17,7 +17,7 @@ export class ProjetCardComponent implements OnInit {
 
   @ViewChild('editProjetID') editProjetModal: any
 
-  statuts: any = this._data.statuts
+  statuts: any
 
   projetForm: FormGroup = this.fb.group({
       client_id: new FormControl(null, [Validators.required]),
@@ -35,6 +35,16 @@ export class ProjetCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getStatut()
+  }
+  getStatut(){
+    this._data.getStatus().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.statuts = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   gotoProjet(){

@@ -31,7 +31,17 @@ export class AddProjetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.statuts = this._data.statuts
+    this.getStatut()
+  }
+
+  getStatut(){
+    this._data.getStatus().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.statuts = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   addProjet(){
