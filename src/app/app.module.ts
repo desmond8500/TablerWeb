@@ -11,7 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './index/navbar/navbar.component';
-import { HeaderComponent } from './index/header/header.component';
+// import { HeaderComponent } from './index/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 import { registerLocaleData } from '@angular/common';
@@ -21,6 +21,7 @@ registerLocaleData(localeFr);
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { StatusCardComponent } from './card/status-card/status-card.component';
+import { HeaderComponent } from './index/header/header.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { StatusCardComponent } from './card/status-card/status-card.component';
     TablerIconsModule.pick(TablerIcons),
   ],
   exports: [
-    HeaderComponent
+    // HeaderComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
