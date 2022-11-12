@@ -1,8 +1,13 @@
+<div class="row mb-2">
+    <div class="col-md"></div>
+    <div class="col-md-auto">
+        <app-contact-add (reloadEvent)="getContacts()"></app-contact-add>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-4 mb-2" *ngFor="let contact of contact$">
+        <app-contact-card [contact]="contact" (reloadEvent)="getContacts()"></app-contact-card>
+    </div>
+</div>
 
-
-
-<app-contact-add></app-contact-add>
-<app-contact-card></app-contact-card>
-
-<p>contacts works!</p>

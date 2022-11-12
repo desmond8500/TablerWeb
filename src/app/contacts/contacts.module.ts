@@ -5,18 +5,18 @@ import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactAddComponent } from './contact-add/contact-add.component';
 import { ContactCardComponent } from './contact-card/contact-card.component';
 import { ContactsComponent } from './contacts.component';
-import { HeaderComponent } from '../index/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ContactAddComponent,
     ContactCardComponent,
     ContactsComponent,
-    HeaderComponent
   ],
   imports: [
     CommonModule,
     ContactsRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ContactsModule { }
