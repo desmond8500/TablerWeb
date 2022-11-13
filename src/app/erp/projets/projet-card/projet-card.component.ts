@@ -40,7 +40,6 @@ export class ProjetCardComponent implements OnInit {
   getStatut(){
     this._data.getStatus().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.statuts = res.data
       },
       error: (error: any) => console.log(error),
@@ -78,7 +77,13 @@ export class ProjetCardComponent implements OnInit {
     })
   }
   deleteProjet(){
-
+    this._projet.deleteProjet({id: this.projet.id}).subscribe({
+      next: (res) => {
+        this.modalService.dismissAll()
+        this.reloadEvent.emit()
+      },
+      error: (error) => console.log(error),
+    })
   }
 
 }

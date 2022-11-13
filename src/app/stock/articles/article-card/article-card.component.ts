@@ -93,7 +93,6 @@ export class ArticleCardComponent implements OnInit {
   getPriorities(){
     this._data.getStatus().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.priority$ = res.data
       },
       error: (error: any) => console.log(error),
@@ -102,7 +101,6 @@ export class ArticleCardComponent implements OnInit {
   getBrands(){
     this._brand.getBrands().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.brand$ = res.data
       },
       error: (error: any) => console.log(error),
@@ -111,13 +109,11 @@ export class ArticleCardComponent implements OnInit {
   getProviders(){
     this._provider.getProviders().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.provider$ = res.data
       },
       error: (error: any) => console.log(error),
     })
   }
-
 
   closeResult = '';
 

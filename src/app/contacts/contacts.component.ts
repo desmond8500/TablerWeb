@@ -21,7 +21,6 @@ export class ContactsComponent implements OnInit {
   getContacts(){
     this._contact.getContacts().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.contact$ = res.data
       },
       error: (error: any) => console.log(error),

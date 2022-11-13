@@ -37,7 +37,6 @@ export class AddProjetComponent implements OnInit {
   getStatut(){
     this._data.getStatus().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.statuts = res.data
       },
       error: (error: any) => console.log(error),

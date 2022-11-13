@@ -46,11 +46,9 @@ export class ArticleAddComponent implements OnInit {
 
   add_Article(){
     let form: any = this.articleForm.value
-    console.log(form);
 
     this._article.addArticle(form).subscribe({
       next: (res) => {
-        console.log(res)
         this.reloadEvent.emit()
         this.modalService.dismissAll()
       },
@@ -61,7 +59,6 @@ export class ArticleAddComponent implements OnInit {
   getPriorities(){
     this._data.getStatus().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.priority$ = res.data
       },
       error: (error: any) => console.log(error),
@@ -70,7 +67,6 @@ export class ArticleAddComponent implements OnInit {
   getBrands(){
     this._brand.getBrands().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.brand$ = res.data
       },
       error: (error: any) => console.log(error),
@@ -79,7 +75,6 @@ export class ArticleAddComponent implements OnInit {
   getProviders(){
     this._provider.getProviders().subscribe({
       next: (res: any) => {
-        console.log(res)
         this.provider$ = res.data
       },
       error: (error: any) => console.log(error),

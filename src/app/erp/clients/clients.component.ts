@@ -27,11 +27,10 @@ export class ClientsComponent implements OnInit {
   getClients(){
     this._client.getClients().subscribe(
       res => {
-        // console.log(res)
         this.clients$ = res.data
       },
       err => {
-        // console.log(err)
+        console.log(err)
       }
     )
   }

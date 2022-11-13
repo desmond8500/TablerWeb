@@ -30,7 +30,6 @@ export class ClientAddComponent implements OnInit {
   addClient(){
     console.log(this.clientForm.value);
     this._client.addClient(this.clientForm.value).subscribe(res => {
-      console.log(res)
       this.modalService.dismissAll()
       this.relaod.emit(1)
     },

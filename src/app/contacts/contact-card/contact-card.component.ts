@@ -52,8 +52,6 @@ export class ContactCardComponent implements OnInit {
       lastname: this.contact?.lastname,
       description: this.contact?.description,
     })
-    console.log(this.contactForm.value);
-
     this.modalService.open(this.editModal)
   }
   updateContact(){
@@ -71,10 +69,9 @@ export class ContactCardComponent implements OnInit {
   deleteContact(){
     let form: Contact = this.contactForm.value
     this._contact.deleteContact({id: this.contact.id}).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.modalService.dismissAll()
          this.reloadEvent.emit()
-        // this.route.navigate(['erp/contacts'])
       },
       error: (error) => console.log(error),
     })
@@ -85,13 +82,9 @@ export class ContactCardComponent implements OnInit {
       contact_id: this.contact.id,
       tel: this.telForm.value.tel
     }
-    console.log(form);
-
     this._contact.addTel(form).subscribe({
       next: (res) => {
-        console.log(res)
         this.reloadEvent.emit()
-        // this.modalService.dismissAll()
       },
       error: (error) => console.log(error),
     })
@@ -105,9 +98,7 @@ export class ContactCardComponent implements OnInit {
 
     this._contact.addMail(form).subscribe({
       next: (res) => {
-        console.log(res)
         this.reloadEvent.emit()
-        // this.modalService.dismissAll()
       },
       error: (error) => console.log(error),
     })

@@ -22,6 +22,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { StatusCardComponent } from './card/status-card/status-card.component';
 import { HeaderComponent } from './index/header/header.component';
+// import { TestPipe } from './pipes/test.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeaderComponent } from './index/header/header.component';
     IndexComponent,
     InfoModalComponent,
     StatusCardComponent,
+    // TestPipe,
   ],
   imports: [
     BrowserModule,

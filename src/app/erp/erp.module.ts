@@ -32,6 +32,9 @@ import { RoomArticleAddComponent } from './building/room-article-add/room-articl
 import { InvoiceAddComponent } from './invoices/invoice-add/invoice-add.component';
 import { StageGenerateComponent } from './building/stage-generate/stage-generate.component';
 import { RoomGenerateComponent } from './building/room-generate/room-generate.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { StatusPipe } from './status.pipe';
+import { InvoiceRowAddComponent } from './invoices/invoice-row-add/invoice-row-add.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { RoomGenerateComponent } from './building/room-generate/room-generate.co
     InvoiceAddComponent,
     StageGenerateComponent,
     RoomGenerateComponent,
-
+    InvoiceComponent,
+    StatusPipe,
+    InvoiceRowAddComponent
   ],
   imports: [
     CommonModule,

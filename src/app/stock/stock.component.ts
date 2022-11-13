@@ -12,24 +12,14 @@ export class StockComponent implements OnInit {
     subtitle: 'Stock',
     title: 'Articles'
   }
-  articles$:any
 
   constructor(
     private _article: ArticleService
   ) { }
 
   ngOnInit(): void {
-    this.getArticles()
   }
 
-  getArticles(){
-    this._article.getArticles().subscribe({
-      next: (res: any) => {
-        console.log(res)
-        this.articles$ = res.data
-      },
-      error: (error: any) => console.log(error),
-    })
-  }
+
 
 }
