@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Stage } from 'src/app/interfaces/stage';
-import { BuildingService } from 'src/app/services/building.service';
 import { StageService } from 'src/app/services/stage.service';
 
 @Component({

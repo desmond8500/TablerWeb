@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArticleCardComponent } from './article-card.component';
+import { InvoiceRowAddComponent } from './invoice-row-add.component';
 
-describe('ArticleCardComponent', () => {
-  let component: ArticleCardComponent;
-  let fixture: ComponentFixture<ArticleCardComponent>;
+describe('InvoiceRowAddComponent', () => {
+  let component: InvoiceRowAddComponent;
+  let fixture: ComponentFixture<InvoiceRowAddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArticleCardComponent ]
+      declarations: [ InvoiceRowAddComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ArticleCardComponent);
+    fixture = TestBed.createComponent(InvoiceRowAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

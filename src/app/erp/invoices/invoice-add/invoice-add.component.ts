@@ -45,6 +45,7 @@ export class InvoiceAddComponent implements OnInit {
       next: (res: any) => {
         console.log(res)
         this.reloadEvent.emit()
+        this.modalService.dismissAll()
       },
       error: (error: any) => console.log(error),
     })

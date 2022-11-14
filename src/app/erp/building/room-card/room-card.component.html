@@ -29,7 +29,9 @@
       </div>
       <div class="w-100 mb-2"></div>
 
-      liste des systèmes
+      <ul>
+        <li *ngFor="let invoice of invoice$">{{ invoice.description }} 11</li>
+      </ul>
 
       <!-- <div class="col-md-6" *ngFor="let room of rooms$">
         <app-room-card [room]="room" (reloadEvent)="getRooms()"></app-room-card>

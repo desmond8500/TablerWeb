@@ -1,0 +1,33 @@
+<button class="btn btn-primary" (click)="open(content)">
+  Générer
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter des locaux</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="generateForm" class="row">
+      <div class="col-md-6">
+        <label class="form-label">Local</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">A Partir</label>
+        <input type="number" class="form-control" formControlName="from">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Jusqu'a</label>
+        <input type="number" class="form-control" formControlName="to">
+      </div>
+
+      <div class="col-md-12 my-2 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-primary" (click)="generate()" *ngIf="statut">Générer</button>
+        <div class="text-success" *ngIf="!statut">Modification Effectuée</div>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

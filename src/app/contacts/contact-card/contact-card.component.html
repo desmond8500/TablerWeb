@@ -1,0 +1,123 @@
+<div class="card p-2">
+  <div class="row">
+    <div class="col-auto" type="button" (click)="showContact()">
+      <img src="" alt="A" class="avatar avatar-md">
+    </div>
+    <div class="col" type="button" (click)="showContact()">
+      <div class="fw-bold"> {{ contact.firstname }} {{ contact.lastname }}</div>
+      <div class="text-muted">{{ contact.tels[0].tel }}</div>
+      <div class="text-muted">{{ contact.emails[0].email }}</div>
+    </div>
+    <div class="col-auto">
+      <div class="btn btn-outline-primary btn-icon" (click)="editContact()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #editContactID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier une marque</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="contactForm" class="row">
+
+      <div class="col-md mb-3">
+        <label class="form-label">Nom de la marque</label>
+        <input type="text" formControlName="firstname" class="form-control" placeholder="Prénom">
+      </div>
+      <div class="col-md mb-3">
+        <label class="form-label">Nom de la marque</label>
+        <input type="text" formControlName="lastname" class="form-control" placeholder="Nom">
+      </div>
+
+        <div class="col-md-12 mb-3">
+          <div class="btn-list">
+            <button class="btn btn-primary" (click)="open(contactAddTelID)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+              Téléphone
+            </button>
+            <button class="btn btn-primary" (click)="open(contactAddEmailID)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+              Email
+            </button>
+          </div>
+        </div>
+
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">Description</label>
+        <textarea formControlName="description" class="form-control" cols="30" rows="3" placeholder="Description"></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-danger" (click)="deleteContact()">Supprimer</button>
+        <button class="btn btn-primary" (click)="updateContact()">Modifier</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #ContactDetailID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Contact</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="fw-bold"> {{ contact?.firstname }} {{ contact?.lastname }}</div>
+    <div class="text-muted">Email</div>
+    <div class="text-muted">Téléphone</div>
+    <div class="text-muted" [innerHtml]="contact?.description"></div>
+
+  </div>
+</ng-template>
+
+<ng-template #contactAddEmailID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un Email</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="mailForm" class="row">
+
+      <div class="col-md mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" placeholder="Email">
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-primary" (click)="addMail()">Ajouter Email</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contactAddTelID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un numéro de téléphone</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="telForm" class="row">
+
+      <div class="col-md mb-3">
+        <label class="form-label">Téléphone</label>
+        <input type="phone" formControlName="tel" class="form-control" placeholder="Téléphone">
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-primary" (click)="addTel()">Ajouter Téléphone</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

@@ -1,1 +1,69 @@
-<p>article-add works!</p>
+<button class="btn btn-primary" (click)="open(addArticle)">
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+  Article
+</button>
+
+<ng-template #addArticle let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un article</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="articleForm" class="row">
+
+      <div class="col-md-auto mb-3">
+        <a href="#" class="avatar avatar-upload rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <line x1="12" y1="5" x2="12" y2="19" /> <line x1="5" y1="12" x2="19" y2="12" /> </svg>
+          <span class="avatar-upload-text">Ajouter</span>
+        </a>
+      </div>
+      <div class="col-md mb-3">
+        <label class="form-label required">Nom de l'article</label>
+        <input type="text" formControlName="designation" class="form-control" placeholder="Nom">
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-8 mb-3">
+        <label class="form-label required">Référence de l'article</label>
+        <input type="text" formControlName="reference" class="form-control" placeholder="Nom">
+      </div>
+      <!-- <div class="col-md-6 mb-3">
+        <label class="form-label">Quantité</label>
+        <input type="text" formControlName="quantity" class="form-control" placeholder="Nom">
+      </div> -->
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Prix</label>
+        <input type="text" formControlName="price" class="form-control" placeholder="Nom">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Marque</label>
+        <select class="form-select" formControlName="brand_id">
+          <option [value]="brand.id" *ngFor="let brand of brand$">{{ brand.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Fournisseur</label>
+        <select class="form-select" formControlName="provider_id">
+          <option [value]="provider.id" *ngFor="let provider of provider$">{{ provider.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label required">Priorité</label>
+        <select class="form-select" formControlName="priority">
+          <option [value]="priority.niveau" *ngFor="let priority of priority$">{{ priority.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">Description</label>
+        <textarea formControlName="description" class="form-control" cols="30" rows="3" placeholder="Description"></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-primary" (click)="add_Article()">Ajouter</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

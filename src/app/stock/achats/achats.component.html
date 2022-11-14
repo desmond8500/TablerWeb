@@ -1,0 +1,68 @@
+<div class="">
+  <div class="text-end mb-2">
+    <app-achat-add (reloadEvent)="getAchats()"></app-achat-add>
+  </div>
+
+  <div>
+    <div class="table-responsive">
+      <table class="table table-primary">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col" style="width: 10px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="" *ngFor="let achat of achat$">
+            <td scope="row">{{ achat.name }}</td>
+            <td>{{ achat.description }}</td>
+            <td scope="row">{{ achat.date | date }}</td>
+            <td>
+              <div class="btn btn-outline-primary btn-icon" (click)="editAchat(achat)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #editAchatID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier un achat</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="achatForm" class="row">
+
+      <div class="col-md mb-3">
+        <label class="form-label">Nom de l'achat</label>
+        <input type="text" formControlName="name" class="form-control" placeholder="Nom">
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">Date  {{ achatForm.value.date }}</label>
+        <input type="date" formControlName="date" class="form-control">
+      </div>
+
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">Description</label>
+        <textarea formControlName="description" class="form-control" cols="30" rows="3" placeholder="Description"></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-danger" (click)="deleteAchat()">Supprimer</button>
+        <button class="btn btn-primary" (click)="updateAchat()">Modifier</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+

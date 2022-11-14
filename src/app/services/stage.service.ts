@@ -18,6 +18,9 @@ export class StageService {
   getStages():Observable<any>{
     return this._http.get(this.server+'/stages')
   }
+  getBuildingStages(form:any):Observable<any>{
+    return this._http.post(this.server+'/building_stages', form)
+  }
   addStage(postForm:any):Observable<any>{
     return this._http.post(this.server+'/stages', postForm)
   }

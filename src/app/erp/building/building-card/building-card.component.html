@@ -19,7 +19,10 @@
     </div>
   </div>
   <div class="card-footer">
-    <app-stage-add [building_id]="building.id" (reloadEvent)="getStages()"></app-stage-add>
+    <div class="btn-list">
+      <app-stage-add [building_id]="building.id" (reloadEvent)="getStages()"></app-stage-add>
+      <app-stage-generate [building_id]="building.id" (reloadEvent)="getStages()"></app-stage-generate>
+    </div>
   </div>
 </div>
 

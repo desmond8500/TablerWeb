@@ -17,7 +17,7 @@ export class ProjetCardComponent implements OnInit {
 
   @ViewChild('editProjetID') editProjetModal: any
 
-  statuts: any = this._data.statuts
+  statuts: any
 
   projetForm: FormGroup = this.fb.group({
       client_id: new FormControl(null, [Validators.required]),
@@ -35,6 +35,15 @@ export class ProjetCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getStatut()
+  }
+  getStatut(){
+    this._data.getStatus().subscribe({
+      next: (res: any) => {
+        this.statuts = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   gotoProjet(){
@@ -68,7 +77,13 @@ export class ProjetCardComponent implements OnInit {
     })
   }
   deleteProjet(){
-
+    this._projet.deleteProjet({id: this.projet.id}).subscribe({
+      next: (res) => {
+        this.modalService.dismissAll()
+        this.reloadEvent.emit()
+      },
+      error: (error) => console.log(error),
+    })
   }
 
 }

@@ -54,7 +54,7 @@ export class ClientCardComponent implements OnInit {
   deleteClient(){
     let form: Client = this.clientForm.value
     this._client.deleteClient(form).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.modalService.dismissAll()
         this.route.navigate(['erp/clients'])
       },

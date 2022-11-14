@@ -1,0 +1,48 @@
+<button class="btn btn-primary" (click)="open(content)">
+  Générer niveaux
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Générer des niveaux</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="generateForm" class="row">
+
+      <div class="mb-3 row">
+        <label class="col-3 col-form-label required">Sous sol</label>
+        <div class="col">
+          <input type="number" class="form-control" formControlName="soussol">
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-3 col-form-label required">Etages</label>
+        <div class="col">
+          <input type="number" class="form-control" formControlName="etage">
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-3 col-form-label pt-0">Checkboxes</label>
+        <div class="col">
+          <label class="form-check">
+            <input class="form-check-input" formControlName="mezzanine" type="checkbox" checked>
+            <span class="form-check-label">Mezzanine</span>
+          </label>
+          <label class="form-check">
+            <input class="form-check-input" formControlName="terrasse" type="checkbox">
+            <span class="form-check-label">Terrasse</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-3 d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="modal.close()">Fermer</button>
+        <button class="btn btn-primary" (click)="generate()">Génerer</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

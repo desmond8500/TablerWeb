@@ -19,6 +19,12 @@ export class BuildingService {
   getBuildings():Observable<any>{
     return this._http.get(this.server+'/buildings')
   }
+  getProjetBuilding(form:any):Observable<any>{
+    return this._http.post(this.server+'/projet_buildings', form)
+  }
+  getBuilding(postForm:any):Observable<any>{
+    return this._http.post(this.server+'/buildings', postForm)
+  }
   addBuilding(postForm:any):Observable<any>{
     return this._http.post(this.server+'/buildings', postForm)
   }

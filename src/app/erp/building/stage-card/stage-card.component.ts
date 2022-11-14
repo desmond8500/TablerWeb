@@ -37,7 +37,7 @@ export class StageCardComponent implements OnInit {
   }
 
   getRooms(){
-    this._room.getRooms().subscribe({
+    this._room.getStageRooms({stage_id: this.stage.id}).subscribe({
       next: (res: any) => {
         console.log(res)
         this.rooms$ = res.data
@@ -64,6 +64,16 @@ export class StageCardComponent implements OnInit {
     console.log(form);
 
     this._stage.updateStage(form).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.reloadEvent.emit()
+        this.modalService.dismissAll()
+      },
+      error: (error) => console.log(error),
+    })
+  }
+  deleteStage(){
+    this._stage.deleteStage({id: this.stage.id}).subscribe({
       next: (res) => {
         console.log(res)
         this.reloadEvent.emit()

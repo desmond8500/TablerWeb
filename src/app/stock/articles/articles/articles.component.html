@@ -1,4 +1,19 @@
-<p>articles works!</p>
-<div class="text-end">
-  <app-article-add></app-article-add>
+<div class="row">
+  <div class="col-md">
+    <!-- <app-header [header]="header"></app-header> -->
+  </div>
+  <div class="col-md-auto">
+    <app-article-add (reloadEvent)="getArticles()"></app-article-add>
+
+  </div>
 </div>
+
+<div class="text-end mb-2">
+</div>
+
+<div class="row">
+  <div *ngFor="let article of articles$" class="col-md-4 mb-2">
+    <app-article-card (reloadEvent)="getArticles()" [article]="article"></app-article-card>
+  </div>
+</div>
+

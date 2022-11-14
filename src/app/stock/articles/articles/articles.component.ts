@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Header } from 'src/app/interfaces/header';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -8,12 +9,26 @@ import { Header } from 'src/app/interfaces/header';
 })
 export class ArticlesComponent implements OnInit {
   header: Header = {
-    title: "Articles",
-    subtitle: "Stock"
+    subtitle: 'Stock',
+    title: 'Articles'
   }
-  constructor() { }
+  articles$:any
+
+  constructor(
+    private _article: ArticleService
+  ) { }
 
   ngOnInit(): void {
+    this.getArticles()
+  }
+
+  getArticles(){
+    this._article.getArticles().subscribe({
+      next: (res: any) => {
+        this.articles$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
 }
