@@ -9,8 +9,8 @@ import { Header } from 'src/app/interfaces/header';
 })
 export class IndexComponent implements OnInit {
   header: Header = {
-    title: "Dashbord",
-    subtitle: "Dashbord",
+    title: "Dashboard",
+    subtitle: "Dashboard",
   }
   constructor(
     private modalService: NgbModal,
