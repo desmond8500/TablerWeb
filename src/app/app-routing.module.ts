@@ -6,6 +6,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ReglagesComponent } from './pages/reglages/reglages.component';
 import { StockModule } from './stock/stock.module';
+import { TasksModule } from './tasks/tasks.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'erp', loadChildren:() => import('./erp/erp.component').then(m => ErpModule) },
   { path: 'stock', loadChildren:() => import('./stock/stock.module').then(m => StockModule) },
   { path: 'contacts', loadChildren:() => import('./contacts/contacts.module').then(m => ContactsModule) },
+  { path: 'tasks', loadChildren:() => import('./tasks/tasks.module').then(m => TasksModule) },
   { path: '**', component: NotFoundComponent },
 ];
 

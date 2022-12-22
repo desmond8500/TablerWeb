@@ -15,8 +15,11 @@ export class ReportCardComponent implements OnInit {
   @Input() report: any
   @Input() editButton: boolean = false
   @ViewChild('editReportID') editReportModal: any
+  @ViewChild('showReportID') showReportModal: any
   @Output() reload = new EventEmitter()
+
   reportTypes: any = this._data.reportType
+  selectedReport?: Report
 
   reportForm: FormGroup = this.fb.group({
       id: new FormControl(null, [Validators.required]),
@@ -63,6 +66,9 @@ export class ReportCardComponent implements OnInit {
   }
   deleteReport(){
 
+  }
+  showReport(){
+    this.modalService.open(this.showReportModal)
   }
 
 }

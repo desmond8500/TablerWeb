@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     { name: "Accueil", route: 'index' },
     { name: "Clients", route: 'erp/clients' },
     { name: "Contacts", route: 'contacts' },
+    { name: "Taches", route: 'tasks/tasks' },
     {
       name: "Stock",
       route: null,
