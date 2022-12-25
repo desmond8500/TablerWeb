@@ -36,6 +36,8 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { StatusPipe } from './status.pipe';
 import { InvoiceRowAddComponent } from './invoices/invoice-row-add/invoice-row-add.component';
 import { SectionCardComponent } from './report/section-card/section-card.component';
+import { SectionAddComponent } from './report/section-add/section-add.component';
+import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { SectionCardComponent } from './report/section-card/section-card.compone
     InvoiceComponent,
     StatusPipe,
     InvoiceRowAddComponent,
-    SectionCardComponent
+    SectionCardComponent,
+    SectionAddComponent,
+    DeleteModalComponent
   ],
   imports: [
     CommonModule,

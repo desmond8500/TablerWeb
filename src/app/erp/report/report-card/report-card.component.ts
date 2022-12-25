@@ -12,6 +12,7 @@ import { ReportService } from 'src/app/services/report.service';
   templateUrl: './report-card.component.html',
   styleUrls: ['./report-card.component.scss']
 })
+
 export class ReportCardComponent implements OnInit {
   @Input() report: any
   @Input() editButton: boolean = false
@@ -39,6 +40,7 @@ export class ReportCardComponent implements OnInit {
     description: new FormControl(),
     order: new FormControl(1),
   })
+
    constructor(
       private _report: ReportService,
       private modalService: NgbModal,
@@ -96,7 +98,7 @@ export class ReportCardComponent implements OnInit {
   section$: any
   sectionAddButton: boolean = true
   getSections(){
-    this._report.getReportSections().subscribe({
+    this._report.getReportSections(this.report.id).subscribe({
       next: (res: any) => {
         console.log(res)
         this.section$ = res.data
@@ -105,7 +107,7 @@ export class ReportCardComponent implements OnInit {
     })
   }
   showSectionForm(){
-    this._report.getReportSections().subscribe({
+    this._report.getReportSections(this.report.id).subscribe({
       next: (res) => {
         // console.log(res.data.length);
         this.sectionForm.patchValue({

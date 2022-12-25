@@ -47,6 +47,7 @@ export class ClientComponent implements OnInit {
       next: (res) => {
         this.client$ = res.data
         this.header.title = this.client$?.name
+        this.breadcrumbs[2].name = this.client$.name
       },
     })
   }

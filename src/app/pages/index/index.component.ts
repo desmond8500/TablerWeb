@@ -14,14 +14,14 @@ export class IndexComponent implements OnInit {
     subtitle: "Dashboard",
   }
   breadcrumbs: Breadcrumb[] = [
-    {
-      name: 'test',
-      route: "/index"
-    },
-    {
-      name: 'test',
-      route: "/index"
-    },
+  //   {
+  //     name: 'test',
+  //     route: "/index"
+  //   },
+  //   {
+  //     name: 'test',
+  //     route: "/index"
+  //   },
   ]
   constructor(
     private modalService: NgbModal,

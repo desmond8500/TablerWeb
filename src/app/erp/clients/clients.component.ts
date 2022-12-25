@@ -14,6 +14,10 @@ export class ClientsComponent implements OnInit {
     title: 'Clients',
     subtitle: "ERP"
   }
+  breadcrumbs: any = [
+    { name: "ERP", route: '/erp/clients' },
+    { name: "Clients", route: '/erp/clients' },
+  ]
 
   constructor(
     private _client: ClientService,

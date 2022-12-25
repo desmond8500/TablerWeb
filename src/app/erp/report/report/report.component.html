@@ -1,18 +1,28 @@
-<div class="row">
+<div class="row mb-3">
   <div class="col-md">
-    <app-header [header]="header" ></app-header>
+    <app-header [header]="header" [breadcrumbs]="breadcrumbs"></app-header>
   </div>
-  <div class="col-auto"></div>
+  <div class="col-auto">
+    <app-section-add [report_id]="report$?.id" (reload)="getSections()"></app-section-add>
+  </div>
 </div>
 
-<div class="card p-2 mb-3">
-  <h3>{{ report$?.objet }}</h3>
-  <div class="text-muted" [innerHtml]="report$?.description"></div>
+<div class="row">
+  <div class="col-md-8">
+
+    <div class="card p-2 mb-3">
+      <h3>{{ report$?.objet }}</h3>
+      <div class="text-muted" [innerHtml]="report$?.description"></div>
+    </div>
+
+    <div class="mb-3" *ngFor="let section of section$">
+      <app-section-card [section]="section" (reload)="getSections()"></app-section-card>
+    </div>
+
+  </div>
+  <div class="col-md-4"></div>
 </div>
 
-<!-- <div class="card p-2 mb-3" *ngFor="let section of section$">
-
-</div> -->
 
 
 

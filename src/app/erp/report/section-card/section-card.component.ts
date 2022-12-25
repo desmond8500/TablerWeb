@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, ViewChild, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReportService } from 'src/app/services/report.service';
 
 @Component({
@@ -9,11 +9,10 @@ import { ReportService } from 'src/app/services/report.service';
   styleUrls: ['./section-card.component.scss']
 })
 export class SectionCardComponent implements OnInit {
-  @ViewChild('addSectionId') addSectionModal: any
+  @ViewChild('editsectionID') editSectionModal: any
   @Output() reload = new EventEmitter()
-  @Input() report_id: any
+  @Input() section: any
 
-  section$: any
   sectionAddButton: boolean = true
 
   sectionForm: FormGroup = this.fb.group({
@@ -30,22 +29,57 @@ export class SectionCardComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.getSections()
-
   }
 
+  editSection(){
+    this.sectionForm.patchValue({
+      id: this.section.id,
+      report_id: this.section.report_id,
+      title: this.section.title,
+      description: this.section.description,
+      order: this.section.order,
+    })
+    this.modalService.open(this.editSectionModal)
+  }
 
-
-  // Sections
-  getSections(){
-    this._report.getReportSections().subscribe({
+  updateSection(){
+    this._report.updateReportSection(this.sectionForm.value).subscribe({
       next: (res: any) => {
-        console.log(res)
-        this.section$ = res.data
+        this.modalService.dismissAll()
+        this.reload.emit()
       },
       error: (error: any) => console.log(error),
     })
   }
 
+  deleteSection(){
+    this._report.deleteReportSection(this.section).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.reload.emit()
+        this.modalService.dismissAll()
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
 
+  closeResult = '';
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: result`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: reason`;
+    }
+  }
 }

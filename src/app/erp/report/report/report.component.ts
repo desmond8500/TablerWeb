@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Breadcrumb } from 'src/app/interfaces/breadcrumb';
 import { Header } from 'src/app/interfaces/header';
@@ -15,13 +14,10 @@ export class ReportComponent implements OnInit {
     title: "Rapport",
     subtitle: "ERP"
   }
-  breadcrumbs: Breadcrumb = {
-    name: "TestBed",
-    route: "erp/clients"
-  }
+  breadcrumbs: Breadcrumb[] = [
+    { name: "Projet", route: "erp/clients" }
+  ]
   report_id: any
-  report$?: any
-  section$: any
 
   constructor(
     private route: ActivatedRoute,
@@ -34,10 +30,23 @@ export class ReportComponent implements OnInit {
   }
 
   // Report
+  report$?: any
   getReport(){
     this._report.getReport(this.report_id).subscribe({
       next: (res: any) => {
         this.report$ = res.data
+        this.getSections()
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
+
+  // Section
+  section$: any
+  getSections(){
+    this._report.getReportSections({report_id: this.report_id}).subscribe({
+      next: (res: any) => {
+        this.section$ = res.data
       },
       error: (error: any) => console.log(error),
     })
