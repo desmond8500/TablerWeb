@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Breadcrumb } from 'src/app/breadcrumb';
 import { Header } from 'src/app/interfaces/header';
 
 @Component({
@@ -12,6 +13,16 @@ export class IndexComponent implements OnInit {
     title: "Dashbord",
     subtitle: "Dashbord",
   }
+  breadcrumbs: Breadcrumb[] = [
+    {
+      name: 'test',
+      route: "/index"
+    },
+    {
+      name: 'test',
+      route: "/index"
+    },
+  ]
   constructor(
     private modalService: NgbModal,
   ) { }
