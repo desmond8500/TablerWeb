@@ -6,6 +6,7 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { ProjetComponent } from './projets/projet/projet.component';
 import { ProjetsComponent } from './projets/projets.component';
+import { ReportComponent } from './report/report/report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'clients', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'projet/:id', component: ProjetComponent },
   { path: 'invoices', component: InvoicesComponent },
   { path: 'invoice/:id', component: InvoiceComponent },
+  { path: 'report/:id', component: ReportComponent },
   // { path: '**', component: NotFoundComponent },
 ];
 

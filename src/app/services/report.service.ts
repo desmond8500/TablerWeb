@@ -14,9 +14,11 @@ export class ReportService {
   ) { }
 
   // Report
-
   getReports():Observable<any>{
     return this._http.get(this.server+'/reports')
+  }
+  getReport(id:any):Observable<any>{
+    return this._http.get(this.server+'/reports/'+id)
   }
   addReport(postForm:any):Observable<any>{
     return this._http.post(this.server+'/reports', postForm)
@@ -26,5 +28,18 @@ export class ReportService {
   }
   deleteReport(postForm :any):Observable<any>{
     return this._http.delete(this.server+'/reports/'+postForm.id)
+  }
+  // Report
+  getReportSections():Observable<any>{
+    return this._http.get(this.server+'/report_sections')
+  }
+  addReportSection(postForm:any):Observable<any>{
+    return this._http.post(this.server+'/report_sections', postForm)
+  }
+  updateReportSection(postForm :any):Observable<any>{
+    return this._http.patch(this.server+'/report_sections/'+postForm.id, postForm)
+  }
+  deleteReportSection(postForm :any):Observable<any>{
+    return this._http.delete(this.server+'/report_sections/'+postForm.id)
   }
 }

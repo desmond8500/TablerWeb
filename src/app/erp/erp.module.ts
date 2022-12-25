@@ -35,6 +35,7 @@ import { RoomGenerateComponent } from './building/room-generate/room-generate.co
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { StatusPipe } from './status.pipe';
 import { InvoiceRowAddComponent } from './invoices/invoice-row-add/invoice-row-add.component';
+import { SectionCardComponent } from './report/section-card/section-card.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { InvoiceRowAddComponent } from './invoices/invoice-row-add/invoice-row-a
     RoomGenerateComponent,
     InvoiceComponent,
     StatusPipe,
-    InvoiceRowAddComponent
+    InvoiceRowAddComponent,
+    SectionCardComponent
   ],
   imports: [
     CommonModule,

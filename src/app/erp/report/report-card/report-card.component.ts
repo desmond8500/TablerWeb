@@ -1,7 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Report } from 'src/app/interfaces/report';
 import { DataService } from 'src/app/services/data.service';
 import { ReportService } from 'src/app/services/report.service';
@@ -16,27 +17,39 @@ export class ReportCardComponent implements OnInit {
   @Input() editButton: boolean = false
   @ViewChild('editReportID') editReportModal: any
   @ViewChild('showReportID') showReportModal: any
+  @ViewChild('addSectionId') addSectionModal: any
   @Output() reload = new EventEmitter()
 
   reportTypes: any = this._data.reportType
   selectedReport?: Report
 
+
   reportForm: FormGroup = this.fb.group({
-      id: new FormControl(null, [Validators.required]),
-      projet_id: new FormControl(null, [Validators.required]),
-      objet: new FormControl(null, [Validators.required]),
-      type: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required]),
-    })
+    id: new FormControl(null, [Validators.required]),
+    projet_id: new FormControl(null, [Validators.required]),
+    objet: new FormControl(null, [Validators.required]),
+    type: new FormControl(null, [Validators.required]),
+    description: new FormControl(null, [Validators.required]),
+    date: new FormControl(null, [Validators.required]),
+  })
+  sectionForm: FormGroup = this.fb.group({
+    id: new FormControl(null, [Validators.required]),
+    report_id: new FormControl(null, [Validators.required]),
+    title: new FormControl(null, [Validators.required]),
+    description: new FormControl(),
+    order: new FormControl(1),
+  })
    constructor(
       private _report: ReportService,
       private modalService: NgbModal,
+      // public activeModal: NgbActiveModal,
       private fb: FormBuilder,
       private _data: DataService,
+      private route: Router,
     ) {}
 
   ngOnInit(): void {
+    this.getSections()
   }
 
   editReport(){
@@ -50,6 +63,7 @@ export class ReportCardComponent implements OnInit {
 
     this.modalService.open(this.editReportModal)
   }
+
   updateReport(){
     let form: Report = this.reportForm.value
     form.projet_id = this.report?.projet_id
@@ -64,11 +78,51 @@ export class ReportCardComponent implements OnInit {
     })
 
   }
+
   deleteReport(){
 
   }
+
   showReport(){
     this.modalService.open(this.showReportModal)
+  }
+
+  gotoReport(){
+    this.route.navigate(['erp/report', this.report.id])
+    this.modalService.dismissAll()
+  }
+
+  // section
+  section$: any
+  sectionAddButton: boolean = true
+  getSections(){
+    this._report.getReportSections().subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.section$ = res.data
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
+  showSectionForm(){
+    this._report.getReportSections().subscribe({
+      next: (res) => {
+        // console.log(res.data.length);
+        this.sectionForm.patchValue({
+          report_id: this.report.id,
+          order: res.data.length + 1,
+        })
+      }
+    })
+    this.modalService.open(this.addSectionModal)
+  }
+  addSection(){
+    this._report.addReportSection(this.sectionForm.value).subscribe({
+      next: (res: any) => {
+        this.sectionAddButton = false
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
 }

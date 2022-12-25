@@ -75,28 +75,16 @@
     <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
   </div>
   <div class="modal-body">
-    <h3>{{ report.objet }}</h3>
-    <div class="text-muted" [innerHtml]="report.description"></div>
-    <hr>
+    <div class="d-flex justify-content-between">
+      <h3>{{ report.objet }}</h3>
+      <button class="btn btn-primary btn-sm" (click)="gotoReport()"> Editer </button>
+    </div>
+    <div class="text-muted mb-3" [innerHtml]="report.description"></div>
 
-    <button class="btn btn-primary" >Ajouter une section</button>
-
-
-  </div>
-</ng-template>
-
-<ng-template #addSectionId let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Ajouter une section</h4>
-    <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
-  </div>
-  <div class="modal-body">
-    <h3>{{ report.objet }}</h3>
-    <div class="text-muted" [innerHtml]="report.description"></div>
-    <hr>
-
-    <button class="btn btn-primary" >Ajouter une section</button>
-
+    <div *ngFor="let section of section$" class="card p-2 mb-1">
+      <h4 class="col">{{ section.title }}</h4>
+      <div [innerHtml]="section.description"></div>
+    </div>
 
   </div>
 </ng-template>
