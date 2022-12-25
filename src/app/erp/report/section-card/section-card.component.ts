@@ -55,7 +55,6 @@ export class SectionCardComponent implements OnInit {
   deleteSection(){
     this._report.deleteReportSection(this.section).subscribe({
       next: (res: any) => {
-        console.log(res)
         this.reload.emit()
         this.modalService.dismissAll()
       },

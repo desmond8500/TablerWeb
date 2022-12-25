@@ -10,12 +10,11 @@ import { ReportService } from 'src/app/services/report.service';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-  header: Header = {
-    title: "Rapport",
-    subtitle: "ERP"
-  }
+  header: Header = { title: "Rapport", subtitle: "ERP" }
   breadcrumbs: Breadcrumb[] = [
-    { name: "Projet", route: "erp/clients" }
+    { name: "Clients", route: '/erp/clients' },
+    { name: "Client", route: '.' },
+    { name: "Projets", route: "erp/projets" },
   ]
   report_id: any
 

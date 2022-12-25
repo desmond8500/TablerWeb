@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Report } from 'src/app/interfaces/report';
 import { DataService } from 'src/app/services/data.service';
 import { ReportService } from 'src/app/services/report.service';
