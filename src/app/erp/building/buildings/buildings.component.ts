@@ -21,7 +21,6 @@ export class BuildingsComponent implements OnInit {
   getBuildings(){
     this._building.getProjetBuilding({projet_id: this.projet_id}).subscribe({
       next: (res) => {
-        console.log(res)
         this.buildings$ = res.data
       },
       error: (error) => console.log(error),

@@ -19,9 +19,10 @@ export class StageCardComponent implements OnInit {
   rooms$: any
 
   stageForm: FormGroup = this.fb.group({
+    id: new FormControl(null, [Validators.required]),
     building_id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
-    // order: new FormControl(),
+    order: new FormControl(),
     description: new FormControl(),
   })
 
@@ -39,7 +40,6 @@ export class StageCardComponent implements OnInit {
   getRooms(){
     this._room.getStageRooms({stage_id: this.stage.id}).subscribe({
       next: (res: any) => {
-        console.log(res)
         this.rooms$ = res.data
       },
       error: (error: any) => console.log(error),
@@ -54,6 +54,7 @@ export class StageCardComponent implements OnInit {
     this.stageForm.patchValue({
       building_id: this.stage.building_id,
       name: this.stage.name,
+      order: this.stage.order,
       description: this.stage.description,
     })
     this.modalService.open(this.editStageModal)
@@ -61,11 +62,9 @@ export class StageCardComponent implements OnInit {
   updateStage(){
     let form: Stage = this.stageForm.value
     form.id = this.stage.id
-    console.log(form);
 
     this._stage.updateStage(form).subscribe({
       next: (res) => {
-        console.log(res)
         this.reloadEvent.emit()
         this.modalService.dismissAll()
       },
@@ -75,7 +74,6 @@ export class StageCardComponent implements OnInit {
   deleteStage(){
     this._stage.deleteStage({id: this.stage.id}).subscribe({
       next: (res) => {
-        console.log(res)
         this.reloadEvent.emit()
         this.modalService.dismissAll()
       },

@@ -52,7 +52,7 @@ export class BuildingCardComponent implements OnInit {
     form.id = this.building?.id
 
     this._building.updateBuilding(form).subscribe({
-      next: (res) => {
+      next: () => {
         this.modalService.dismissAll()
         this.reloadEvent.emit(1)
       },
@@ -69,7 +69,6 @@ export class BuildingCardComponent implements OnInit {
   getStages(){
     this._stage.getBuildingStages({building_id: this.building.id}).subscribe({
       next: (res) => {
-        console.log(res)
         this.stages$ = res.data
       },
       error: (error) => console.log(error),

@@ -22,19 +22,19 @@ export class ClientsComponent implements OnInit {
   constructor(
     private _client: ClientService,
     private route: Router,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getClients()
   }
 
   getClients(){
-    this._client.getClients().subscribe(
-      res => {
+    this._client.getClients().subscribe({
+      next: (res) => {
         this.clients$ = res.data
       },
-      err => { console.log(err) }
-    )
+      error: (err) => { console.log(err) }
+    })
   }
 
   goToClient(client_id: any){

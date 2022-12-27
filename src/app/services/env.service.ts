@@ -33,7 +33,6 @@ export class EnvService {
   init(){
     this._http.get("/assets/config.json").subscribe({
       next: (res: any) => {
-        console.log(res)
         this.serverLink = res.server
         this.appTitle = res.name
         this.appVersion = res.version
@@ -41,6 +40,4 @@ export class EnvService {
       error: (error: any) => console.log(error),
     })
   }
-
-
 }

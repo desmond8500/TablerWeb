@@ -16,7 +16,7 @@ export class StageAddComponent implements OnInit {
   stageForm: FormGroup = this.fb.group({
     building_id: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
-    // order: new FormControl(),
+    order: new FormControl(),
     description: new FormControl(),
   })
 

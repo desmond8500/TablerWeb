@@ -5,8 +5,8 @@
     </div>
     <div class="col" type="button" (click)="showContact()">
       <div class="fw-bold"> {{ contact.firstname }} {{ contact.lastname }}</div>
-      <div class="text-muted">{{ contact.tels[0].tel }}</div>
-      <div class="text-muted">{{ contact.emails[0].email }}</div>
+      <div class="text-muted">{{ contact.tels[0]?.tel }}</div>
+      <div class="text-muted">{{ contact.emails[0]?.email }}</div>
     </div>
     <div class="col-auto">
       <div class="btn btn-outline-primary btn-icon" (click)="editContact()">
@@ -16,37 +16,35 @@
   </div>
 </div>
 
-
 <ng-template #editContactID let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Modifier une marque</h4>
+    <h4 class="modal-title" id="modal-basic-title">Editer un contact</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
     <form [formGroup]="contactForm" class="row">
 
       <div class="col-md mb-3">
-        <label class="form-label">Nom de la marque</label>
+        <label class="form-label">Prénom</label>
         <input type="text" formControlName="firstname" class="form-control" placeholder="Prénom">
       </div>
       <div class="col-md mb-3">
-        <label class="form-label">Nom de la marque</label>
+        <label class="form-label">Nom</label>
         <input type="text" formControlName="lastname" class="form-control" placeholder="Nom">
       </div>
 
-        <div class="col-md-12 mb-3">
-          <div class="btn-list">
-            <button class="btn btn-primary" (click)="open(contactAddTelID)">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-              Téléphone
-            </button>
-            <button class="btn btn-primary" (click)="open(contactAddEmailID)">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-              Email
-            </button>
-          </div>
+      <div class="col-md-12 mb-3">
+        <div class="btn-list">
+          <button class="btn btn-primary" (click)="open(contactAddTelID)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+            Téléphone
+          </button>
+          <button class="btn btn-primary" (click)="open(contactAddEmailID)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+            Email
+          </button>
         </div>
-
+      </div>
 
       <div class="col-md-12 mb-3">
         <label class="form-label">Description</label>
