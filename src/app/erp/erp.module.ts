@@ -7,7 +7,6 @@ import { ClientAddComponent } from './clients/client-add/client-add.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ProjetsComponent } from './projets/projets.component';
 import { InvoicesComponent } from './invoices/invoices.component';
-import { HeaderComponent } from './header/header.component';
 import { ClientComponent } from './clients/client/client.component';
 import { NgbAccordionModule, NgbDatepickerModule, NgbNavModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientCardComponent } from './clients/client-card/client-card.component';
@@ -38,6 +37,7 @@ import { InvoiceRowAddComponent } from './invoices/invoice-row-add/invoice-row-a
 import { SectionCardComponent } from './report/section-card/section-card.component';
 import { SectionAddComponent } from './report/section-add/section-add.component';
 import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,6 @@ import { DeleteModalComponent } from './modal/delete-modal/delete-modal.componen
     ProjetsComponent,
     InvoicesComponent,
     ClientAddComponent,
-    HeaderComponent,
     ClientComponent,
     ClientCardComponent,
     AddProjetComponent,
@@ -83,7 +82,7 @@ import { DeleteModalComponent } from './modal/delete-modal/delete-modal.componen
     NgbNavModule,
     NgbDatepickerModule,
     TablerIconsModule.pick(TablerIcons),
-    // NgxPaginationModule,
+    SharedModule
   ],
 })
 export class ErpModule { }

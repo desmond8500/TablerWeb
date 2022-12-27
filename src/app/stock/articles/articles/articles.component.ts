@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Breadcrumb } from 'src/app/interfaces/breadcrumb';
 import { Header } from 'src/app/interfaces/header';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -12,6 +13,10 @@ export class ArticlesComponent implements OnInit {
     subtitle: 'Stock',
     title: 'Articles'
   }
+  breadcrumbs: Breadcrumb[] = [
+    { name: "Articles", route: "/stock/articles" }
+  ]
+
   articles$:any
 
   constructor(

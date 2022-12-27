@@ -1,5 +1,7 @@
 <div class="row mb-2">
-    <div class="col-md"></div>
+    <div class="col-md">
+      <app-header [header]="header" [breadcrumbs]="breadcrumbs"></app-header>
+    </div>
     <div class="col-md-auto">
         <app-contact-add (reloadEvent)="getContacts()"></app-contact-add>
     </div>

@@ -16,7 +16,7 @@ import { ProviderAddComponent } from './providers/provider-add/provider-add.comp
 import { AchatAddComponent } from './achats/achat-add/achat-add.component';
 import { AchatCardComponent } from './achats/achat-card/achat-card.component';
 import { AchatsComponent } from './achats/achats.component';
-// import { HeaderComponent } from '../index/header/header.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { AchatsComponent } from './achats/achats.component';
     CommonModule,
     StockRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class StockModule { }
