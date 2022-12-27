@@ -33,9 +33,7 @@ export class ClientsComponent implements OnInit {
       res => {
         this.clients$ = res.data
       },
-      err => {
-        console.log(err)
-      }
+      err => { console.log(err) }
     )
   }
 

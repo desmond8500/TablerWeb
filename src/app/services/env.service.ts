@@ -9,8 +9,8 @@ export class EnvService {
   // serverLink: string = "http://localhost:8000/api"
   appTitle: string = "Tabler"
   appVersion: string = "1.0"
-
   serverLink: string = "https://dashlite.yonkou.info/api"
+
 
   constructor(
     private _http: HttpClient
