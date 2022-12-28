@@ -51,7 +51,7 @@ export class ReportCardComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.getSections()
+    // this.getSections()
   }
 
   editReport(){
@@ -87,6 +87,7 @@ export class ReportCardComponent implements OnInit {
 
   showReport(){
     this.modalService.open(this.showReportModal)
+    this.getSections()
   }
 
   gotoReport(){
@@ -98,7 +99,7 @@ export class ReportCardComponent implements OnInit {
   section$: any
   sectionAddButton: boolean = true
   getSections(){
-    this._report.getReportSections(this.report.id).subscribe({
+    this._report.getReportSections({report_id: this.report.id}).subscribe({
       next: (res: any) => {
         console.log(res)
         this.section$ = res.data

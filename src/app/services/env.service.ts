@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EnvService {
-  // serverLink: string = "http://localhost:8000/api"
+  serverLink: string = "http://localhost:8000/api"
   appTitle: string = "Tabler"
   appVersion: string = "1.0"
-  serverLink: string = "https://dashlite.yonkou.info/api"
+  // serverLink: string = "https://dashlite.yonkou.info/api"
 
 
   constructor(
@@ -33,6 +33,8 @@ export class EnvService {
   init(){
     this._http.get("/assets/config.json").subscribe({
       next: (res: any) => {
+        console.log(res.name+" "+" "+res.version+" "+res.server);
+
         this.serverLink = res.server
         this.appTitle = res.name
         this.appVersion = res.version

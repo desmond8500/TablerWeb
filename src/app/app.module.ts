@@ -21,7 +21,7 @@ registerLocaleData(localeFr);
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { StatusCardComponent } from './card/status-card/status-card.component';
-import { HeaderComponent } from './index/header/header.component';
+import { SharedModule } from './shared/shared.module';
 // import { TestPipe } from './pipes/test.pipe';
 
 @NgModule({
@@ -32,7 +32,6 @@ import { HeaderComponent } from './index/header/header.component';
     RegisterComponent,
     NotFoundComponent,
     NavbarComponent,
-    HeaderComponent,
     IndexComponent,
     InfoModalComponent,
     StatusCardComponent,
@@ -45,6 +44,7 @@ import { HeaderComponent } from './index/header/header.component';
     HttpClientModule,
     ReactiveFormsModule,
     TablerIconsModule.pick(TablerIcons),
+    SharedModule
   ],
   exports: [
     // HeaderComponent

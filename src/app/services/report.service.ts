@@ -30,8 +30,8 @@ export class ReportService {
     return this._http.delete(this.server+'/reports/'+postForm.id)
   }
   // Report
-  getReportSections(id: any):Observable<any>{
-    return this._http.post(this.server+'/get_report_section/', id)
+  getReportSections(form: any):Observable<any>{
+    return this._http.post(this.server+'/get_report_section', form)
   }
   addReportSection(postForm:any):Observable<any>{
     return this._http.post(this.server+'/report_sections', postForm)
