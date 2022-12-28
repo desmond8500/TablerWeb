@@ -12,9 +12,10 @@ import { ReportService } from 'src/app/services/report.service';
 export class ReportComponent implements OnInit {
   header: Header = { title: "Rapport", subtitle: "ERP" }
   breadcrumbs: Breadcrumb[] = [
+    { name: "ERP", route: '/erp/clients' },
     { name: "Clients", route: '/erp/clients' },
-    { name: "Client", route: '.' },
-    { name: "Projets", route: "erp/projets" },
+    { name: "Client_name", route: '/erp/client/' },
+    { name: "Projet_name", route: "/erp/projet/" },
   ]
   report_id: any
 
@@ -35,6 +36,10 @@ export class ReportComponent implements OnInit {
       next: (res: any) => {
         this.report$ = res.data
         this.getSections()
+        this.breadcrumbs[2].name = this.report$.client_name
+        this.breadcrumbs[2].route = "/erp/client/"+ this.report$.client_id
+        this.breadcrumbs[3].name = this.report$.projet_name
+        this.breadcrumbs[3].route = "/erp/projet/"+ this.report$.projet_id
       },
       error: (error: any) => console.log(error),
     })
