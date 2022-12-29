@@ -33,13 +33,13 @@ export class InvoiceComponent implements OnInit {
   }
 
   getInvoice(){
-    this._invoice.().subscribe({
-      next: (res: any) => {
-        console.log(res)
+    // this._invoice.().subscribe({
+    //   next: (res: any) => {
+    //     console.log(res)
 
-      },
-      error: (error: any) => console.log(error),
-    })
+    //   },
+    //   error: (error: any) => console.log(error),
+    // })
   }
 
 }
