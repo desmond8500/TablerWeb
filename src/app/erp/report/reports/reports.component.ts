@@ -16,7 +16,7 @@ export class ReportsComponent implements OnInit {
   }
 
   getReports(){
-    this._report.getReports().subscribe({
+    this._report.getReports({projet_id: this.projet_id}).subscribe({
       next: (res) => {
         this.reports$ = res.data
       },
