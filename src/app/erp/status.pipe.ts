@@ -11,29 +11,16 @@ export class StatusPipe implements PipeTransform {
   ) {}
 
   transform(value: any, ...args: any[]): any {
-    let status$:any
-    this._data.getStatus().subscribe({
-      next: (res: any) => {
-        status$ = res.data
-      },
-      error: (error: any) => console.log(error),
-    })
-
-    return status$
-
-    // let a: any = "boo"
-    // this._data.getStatus().forEach(res => {
-    //   res.data.forEach((status:any) => {
-
-    //     if (status.niveau == value) {
-    //       console.log(status.niveau + value);
-    //       a= status.name;
-    //       return a
-    //     }
-    //   });
-    // })
-
-    // return a
+    if(value == 1)
+      return "Nouveau"
+    else if(value == 2)
+      return "En cours"
+    else if(value == 3)
+      return "En pause"
+    else if(value == 4)
+      return "Annulé"
+    else if(value == 5)
+      return "Terminé"
   }
 
 }

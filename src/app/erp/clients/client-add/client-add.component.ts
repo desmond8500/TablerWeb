@@ -11,6 +11,7 @@ import { EnvService } from 'src/app/services/env.service';
 })
 export class ClientAddComponent implements OnInit {
   @Output() relaod: any = new EventEmitter()
+
   clientForm: FormGroup = this.fb.group({
     name: new FormControl(null, [Validators.required]),
     description: new FormControl(null, []),
@@ -18,7 +19,6 @@ export class ClientAddComponent implements OnInit {
 
   constructor(
     private _env: EnvService,
-    // private route: Router,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private _client: ClientService,
@@ -28,13 +28,12 @@ export class ClientAddComponent implements OnInit {
   }
 
   addClient(){
-    console.log(this.clientForm.value);
-    this._client.addClient(this.clientForm.value).subscribe(res => {
+    this._client.addClient(this.clientForm.value).subscribe({
+      next: () => {
       this.modalService.dismissAll()
       this.relaod.emit(1)
     },
-    err => {
-      console.log(err)
+    error: (err) => { console.log(err) }
     })
   }
 
