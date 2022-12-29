@@ -14,8 +14,8 @@ export class ReportService {
   ) { }
 
   // Report
-  getReports():Observable<any>{
-    return this._http.get(this.server+'/reports')
+  getReports(form: any):Observable<any>{
+    return this._http.post(this.server+'/get_projet_report', form)
   }
   getReport(id:any):Observable<any>{
     return this._http.get(this.server+'/reports/'+id)
