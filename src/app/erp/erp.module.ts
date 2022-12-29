@@ -38,6 +38,7 @@ import { SectionCardComponent } from './report/section-card/section-card.compone
 import { SectionAddComponent } from './report/section-add/section-add.component';
 import { DeleteModalComponent } from './modal/delete-modal/delete-modal.component';
 import { SharedModule } from '../shared/shared.module';
+import { InvoiceTableComponent } from './invoices/invoice-table/invoice-table.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { SharedModule } from '../shared/shared.module';
     InvoiceRowAddComponent,
     SectionCardComponent,
     SectionAddComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    InvoiceTableComponent
   ],
   imports: [
     CommonModule,

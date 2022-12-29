@@ -19,7 +19,7 @@ export class ProjetComponent implements OnInit {
   projet_id: any
   projet$: any
   client$: any
-  active: any = 3
+  active: any = 1
 
   breadcrumbs: any = [
     { name: "ERP", route: '/erp/clients' },
@@ -62,6 +62,8 @@ export class ProjetComponent implements OnInit {
     })
   }
 
-
+  toggleTab(id: any){
+    this.active = id
+  }
 
 }

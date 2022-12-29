@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from 'src/app/services/data.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
-import { ProjetService } from 'src/app/services/projet.service';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class InvoicesComponent implements OnInit {
   devis$: any
   selected: any
 
-   invoiceForm: FormGroup = this.fb.group({
+  invoiceForm: FormGroup = this.fb.group({
     id: new FormControl(null, [Validators.required]),
     projet_id: new FormControl(null, [Validators.required]),
     reference: new FormControl(null, [Validators.required]),
@@ -38,6 +37,7 @@ export class InvoicesComponent implements OnInit {
     private _invoice: InvoiceService,
     private route: Router,
     private fb: FormBuilder,
+    private _data: DataService,
   ) {}
 
   ngOnInit(): void {
@@ -80,8 +80,11 @@ export class InvoicesComponent implements OnInit {
       tva: invoice.tva,
       brs: invoice.brs,
     })
-
   }
+
+  // getStatus(){
+  //   this._data.
+  // }
 
   updateInvoice(){
     this._invoice.updateInvoice(this.invoiceForm.value).subscribe({

@@ -1,8 +1,24 @@
 <div class="row">
   <div class="col-md">
-    <app-header [header]="header"></app-header>
+    <app-header [header]="header" [breadcrumbs]="breadcrumbs"></app-header>
   </div>
   <div class="col-md-auto">
     <app-invoice-row-add></app-invoice-row-add>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="fw-bold">Client</div>
+    <div>Client name</div>
+    <div>Client tel</div>
+    <div>Client adresse</div>
+    <hr>
+    <div class="fw-bold">Client</div>
+    <div>Remise</div>
+    <div>TVA / BRS</div>
+  </div>
+  <div class="col-md-9">
+    <app-invoice-table></app-invoice-table>
   </div>
 </div>

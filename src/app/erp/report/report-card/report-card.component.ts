@@ -101,7 +101,6 @@ export class ReportCardComponent implements OnInit {
   getSections(){
     this._report.getReportSections({report_id: this.report.id}).subscribe({
       next: (res: any) => {
-        console.log(res)
         this.section$ = res.data
       },
       error: (error: any) => console.log(error),

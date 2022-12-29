@@ -1,17 +1,11 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="card p-2 bg-dark mb-1" *ngFor="let resume of resumes">
-      <div class="d-flex justify-content-between">
-        <div class="fw-bold">
-          {{ resume.name }}
-        </div>
-        <div class="badge">
-          {{ resume.count }}
-        </div>
-      </div>
+<div class="card p-2 bg-dark mb-1" *ngFor="let resume of resumes" (click)="selectTab(resume.id)">
+  <div class="d-flex justify-content-between">
+    <div class="fw-bold">
+      {{ resume.name }}
     </div>
-
+    <div class="badge">
+      {{ resume.count }}
+    </div>
   </div>
 </div>
-
 

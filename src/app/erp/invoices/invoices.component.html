@@ -58,7 +58,7 @@
 <ng-template #devisModalID let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Devis</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
   </div>
   <div class="modal-body">
 
@@ -70,7 +70,7 @@
 <ng-template #editDevisID let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Editer un Devis</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
   </div>
   <div class="modal-body">
     <form [formGroup]="invoiceForm" class="row">
