@@ -10,7 +10,7 @@ export class EnvService {
   appTitle: string = "Tabler"
   appVersion: string = "1.0"
   // serverLink: string = "https://dashlite.yonkou.info/api"
-  serverLink: string = "https://dash.tytoservices.com"
+  serverLink: string = "https://dash.tytoservices.com/api"
 
 
   constructor(
