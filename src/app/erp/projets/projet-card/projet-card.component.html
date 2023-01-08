@@ -6,7 +6,7 @@
     <div class="col" (click)="gotoProjet()" type="button">
       <div class="fw-bold"> {{ projet?.name }}</div>
       <div class="text-muted"> {{ projet?.description }}</div>
-      <div class="badge badge-sm">{{ projet?.status }}</div>
+      <div class="badge mt-2">{{ projet?.status | status }}</div>
     </div>
     <div class="col-auto" *ngIf="editButton">
       <button class="btn btn-primary btn-icon" (click)="editProjet()">

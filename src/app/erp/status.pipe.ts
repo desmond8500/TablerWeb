@@ -11,7 +11,7 @@ export class StatusPipe implements PipeTransform {
   ) {}
 
   transform(value: any, ...args: any[]): any {
-    if (value == 1)
+    if(value == 1)
       return "Nouveau"
     else if(value == 2)
       return "En cours"

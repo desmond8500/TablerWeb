@@ -23,6 +23,12 @@ export class InvoiceComponent implements OnInit {
   ]
 
   invoice_id:any
+  breadcrumbs: any = [
+    { name: "ERP", route: '/erp/clients' },
+    { name: "Clients", route: '/erp/clients' },
+    { name: "Client", route: '/erp/client' },
+    { name: "Projet", route: '/erp/projet' },
+  ]
   constructor(
     private route: ActivatedRoute,
     private _invoice: InvoiceService,
@@ -30,6 +36,28 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.invoice_id = this.route.snapshot.paramMap.get('id');
+    this.getInvoice()
+
+  }
+  // Invoice
+  invoice$: any
+  getInvoice(){
+    this._invoice.getInvoice({id: this.invoice_id}).subscribe({
+      next: (res: any) => {
+        this.invoice$ = res.data
+        this.getRows(res.data.id)
+      },
+      error: (error: any) => console.log(error),
+    })
+  }
+  getRows(id: any){
+    this._invoice.getInvoiceRows({invoice_id: id}).subscribe({
+      next: (res: any) => {
+        console.log(res)
+
+      },
+      error: (error: any) => console.log(error),
+    })
   }
 
   getInvoice(){

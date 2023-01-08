@@ -3,7 +3,50 @@
     <app-header [header]="header" [breadcrumbs]="breadcrumbs"></app-header>
   </div>
   <div class="col-md-auto">
-    <app-invoice-row-add></app-invoice-row-add>
+    <div class="btn-list">
+      <app-invoice-row-add></app-invoice-row-add>
+      <button class="btn btn-success" >Article</button>
+      <button class="btn btn-primary" >Section</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div [innerText]="invoice$?.description"></div>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-9">
+    <div class="table-responsive bg-white">
+      <table class="table table-vcenter">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantité</th>
+            <th>Coef</th>
+            <th>Prix</th>
+            <th>Total</th>
+            <th>Marge</th>
+            <th class="w-1">Editer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Paweł Kuna</td>
+            <td class="text-muted"> 1 </td>
+            <td class="text-muted">1</td>
+            <td class="text-muted">500</td>
+            <td class="text-muted">500</td>
+            <td class="text-muted">500</td>
+            <td>
+              <a href="#">Edit</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 

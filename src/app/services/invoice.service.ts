@@ -19,6 +19,9 @@ export class InvoiceService {
   getInvoices():Observable<any>{
     return this._http.get(this.server+'/invoices')
   }
+  getInvoice(form:any):Observable<any>{
+    return this._http.get(this.server+'/invoices/'+form.id)
+  }
   getProjet_invoices(form: any):Observable<any>{
     return this._http.get(this.server+'/projet_invoices', form)
   }
@@ -34,4 +37,23 @@ export class InvoiceService {
   deleteInvoice(postForm :any):Observable<any>{
     return this._http.delete(this.server+'/invoices/'+postForm.id)
   }
+
+  // InvoiceRow
+
+  getInvoiceRows(form: any):Observable<any>{
+    return this._http.post(this.server+'/get_invoice_rows', form)
+  }
+  getInvoiceRow(form: any):Observable<any>{
+    return this._http.post(this.server+'/invoice_rows', form.id)
+  }
+  addInvoiceRow(postForm:any):Observable<any>{
+    return this._http.post(this.server+'/invoice_rows', postForm)
+  }
+  updateInvoiceRow(postForm :any):Observable<any>{
+    return this._http.patch(this.server+'/invoice_rows/'+postForm.id, postForm)
+  }
+  deleteInvoiceRow(postForm :any):Observable<any>{
+    return this._http.delete(this.server+'/invoice_rows/'+postForm.id)
+  }
 }
+
