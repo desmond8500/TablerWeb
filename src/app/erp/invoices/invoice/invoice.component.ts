@@ -23,12 +23,6 @@ export class InvoiceComponent implements OnInit {
   ]
 
   invoice_id:any
-  breadcrumbs: any = [
-    { name: "ERP", route: '/erp/clients' },
-    { name: "Clients", route: '/erp/clients' },
-    { name: "Client", route: '/erp/client' },
-    { name: "Projet", route: '/erp/projet' },
-  ]
   constructor(
     private route: ActivatedRoute,
     private _invoice: InvoiceService,
@@ -58,16 +52,6 @@ export class InvoiceComponent implements OnInit {
       },
       error: (error: any) => console.log(error),
     })
-  }
-
-  getInvoice(){
-    // this._invoice.().subscribe({
-    //   next: (res: any) => {
-    //     console.log(res)
-
-    //   },
-    //   error: (error: any) => console.log(error),
-    // })
   }
 
 }
