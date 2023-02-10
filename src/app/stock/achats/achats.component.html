@@ -4,8 +4,8 @@
   </div>
 
   <div>
-    <div class="table-responsive">
-      <table class="table table-primary">
+    <div class="table-responsive bg-white">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">Nom</th>
@@ -16,7 +16,9 @@
         </thead>
         <tbody>
           <tr class="" *ngFor="let achat of achat$">
-            <td scope="row">{{ achat.name }}</td>
+            <td scope="row">
+              <a (click)="showAchat(achat)" type="button">{{ achat.name }}</a>
+            </td>
             <td>{{ achat.description }}</td>
             <td scope="row">{{ achat.date | date }}</td>
             <td>
@@ -35,19 +37,19 @@
 <ng-template #editAchatID let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Modifier un achat</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
   </div>
   <div class="modal-body">
     <form [formGroup]="achatForm" class="row">
 
-      <div class="col-md mb-3">
+      <div class="col-md-8 mb-3">
         <label class="form-label">Nom de l'achat</label>
         <input type="text" formControlName="name" class="form-control" placeholder="Nom">
       </div>
 
-      <div class="col-md-12 mb-3">
-        <label class="form-label">Date  {{ achatForm.value.date }}</label>
-        <input type="date" formControlName="date" class="form-control">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Date  </label>
+        <input type="date" formControlName="date" class="form-control" >
       </div>
 
 
@@ -63,6 +65,25 @@
       </div>
 
     </form>
+  </div>
+</ng-template>
+
+<ng-template #showAchatID let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Achat</h4>
+    <a type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></a>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="p-2">
+        <b>Achat :</b> {{ selected.name }}
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <a routerLink="/stock/achat" class="btn btn-primary" >Consulter </a>
   </div>
 </ng-template>
 

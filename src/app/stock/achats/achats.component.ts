@@ -10,6 +10,7 @@ import { AchatService } from 'src/app/services/achat.service';
 })
 export class AchatsComponent implements OnInit {
   @ViewChild('editAchatID') editModal:any
+  @ViewChild('showAchatID') showModal:any
 
   achat$: any
   selected: any
@@ -43,9 +44,10 @@ export class AchatsComponent implements OnInit {
     this.achatForm.patchValue({
       id: achat.id,
       name: achat.name,
+      date: achat.date,
       description: achat.description,
     })
-    console.log(this.achatForm.value);
+    // console.log(this.achatForm.value);
     this.selected = achat
 
     this.modalService.open(this.editModal)
@@ -63,7 +65,6 @@ export class AchatsComponent implements OnInit {
     })
   }
   deleteAchat(){
-    let form: any = this.achatForm.value
     this._achat.deleteAchat({id: this.selected.id}).subscribe({
       next: (res) => {
         this.modalService.dismissAll()
@@ -72,6 +73,15 @@ export class AchatsComponent implements OnInit {
       },
       error: (error) => console.log(error),
     })
+  }
+
+  showAchat(achat:any){
+    this.selected = achat
+    this.modalService.open(this.showModal)
+  }
+
+  gotoAchat(){
+
   }
 
   closeResult = '';

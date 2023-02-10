@@ -15,6 +15,18 @@ export class DataService {
     { code: 3, name: "Rapport d'incident" },
     { code: 4, name: "Proposition technique" },
   ]
+  status: any = [
+    { code: 1, name: "Nouveau"},
+    { code: 2, name: "En Cours" },
+    { code: 3, name: "En Pause" },
+    { code: 4, name: "Annulé" },
+    { code: 5, name: "Terminé" },
+  ]
+  priority: any = [
+    { code: 1, name: "Basse"},
+    { code: 2, name: "Moyenne" },
+    { code: 3, name: "Haute" },
+  ]
 
   constructor(
     private _env: EnvService,

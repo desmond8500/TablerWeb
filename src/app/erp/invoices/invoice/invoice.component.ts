@@ -47,7 +47,6 @@ export class InvoiceComponent implements OnInit {
   getRows(id: any){
     this._invoice.getInvoiceRows({invoice_id: id}).subscribe({
       next: (res: any) => {
-        console.log(res)
 
       },
       error: (error: any) => console.log(error),

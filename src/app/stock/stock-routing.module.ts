@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AchatComponent } from './achats/achat/achat.component';
 import { AchatsComponent } from './achats/achats.component';
 import { ArticlesComponent } from './articles/articles/articles.component';
 import { BrandsComponent } from './brands/brands.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'article/:id', component: StockComponent },
   { path: 'providers', component: ProvidersComponent },
   { path: 'achats', component: AchatsComponent },
+  { path: 'achat/:id', component: AchatComponent },
   { path: 'marques', component: BrandsComponent },
   // { path: '**', component: NotFoundComponent },
 ];
@@ -20,7 +22,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    // HeaderComponent,
   ],
   exports: [RouterModule]
 })

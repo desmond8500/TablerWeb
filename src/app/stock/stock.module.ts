@@ -17,6 +17,7 @@ import { AchatAddComponent } from './achats/achat-add/achat-add.component';
 import { AchatCardComponent } from './achats/achat-card/achat-card.component';
 import { AchatsComponent } from './achats/achats.component';
 import { SharedModule } from '../shared/shared.module';
+import { AchatComponent } from './achats/achat/achat.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from '../shared/shared.module';
     AchatAddComponent,
     AchatCardComponent,
     AchatsComponent,
+    AchatComponent,
   ],
   imports: [
     CommonModule,

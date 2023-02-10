@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ErpRoutingModule } from './erp-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientAddComponent } from './clients/client-add/client-add.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ProjetsComponent } from './projets/projets.component';
@@ -78,6 +78,7 @@ import { InvoiceTableComponent } from './invoices/invoice-table/invoice-table.co
   imports: [
     CommonModule,
     ErpRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     NgbRatingModule,
     NgbAccordionModule,
